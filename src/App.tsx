@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { WidgetTest } from './components/widgetExecutions/WidgetTest';
 

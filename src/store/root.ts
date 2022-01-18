@@ -1,10 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import widgetExecutionsSlice from '../components/widgetExecutions/widgetExecutionsSlice'
 
 export const store = configureStore({
   reducer: {
-    posts: postsReducer,
-    comments: commentsReducer,
-    users: usersReducer,
+    widgetExecutions: widgetExecutionsSlice,
   },
 })
 
