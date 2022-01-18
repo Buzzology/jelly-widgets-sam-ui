@@ -21,6 +21,7 @@ export type WidgetExecuteBatchResponse = {
 
 export type WidgetExecuteBatchResponseItem = {
     itemId: string;
+    batchId: string;
     widgetId: string;
     success: boolean;
     data: any

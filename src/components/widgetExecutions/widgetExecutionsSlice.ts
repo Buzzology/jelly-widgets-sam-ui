@@ -57,12 +57,10 @@ export const widgetExecutionsSlice = createSlice({
                     return acc;
                 }, {});
 
-                debugger;
                 state.byId = {...state.byId, ...test};
-                debugger;
             })
             .addCase(executeBatchAsync.rejected, (state) => {
-                debugger;
+                throw new Error("Need to handle this")
             });
     },
 });
@@ -73,6 +71,10 @@ export const widgetExecutionsSlice = createSlice({
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 // export const selectCount = (state: RootState) => state.counter.value;
+export const selectResponseItemsByBatchId = (state: RootState, batchId: string) => {
+    return Object.values(state.widgetExecutions.byId)
+        .filter(item => item.batchId === batchId)
+}
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
