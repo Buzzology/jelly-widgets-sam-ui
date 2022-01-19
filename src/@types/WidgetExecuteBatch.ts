@@ -1,3 +1,5 @@
+import { EnumWidgetId } from "./Widget"
+
 export type WidgetExecuteBatchRequest = {
     batchId: string;
     requestItems: Array<WidgetExecuteBatchRequestItem>;
@@ -5,7 +7,7 @@ export type WidgetExecuteBatchRequest = {
 
 export type WidgetExecuteBatchRequestItem = {
     itemId: string;
-    widgetId: string;
+    widgetId: EnumWidgetId;
     payload?: IWidgetExecuteBatchRequestItemPayload;
 }
 
@@ -13,6 +15,10 @@ export type WidgetExecuteBatchRequestItem = {
 export interface IWidgetExecuteBatchRequestItemPayload {
 
 }
+
+export interface IGenericExecuteBatchRequestItemPayload extends IWidgetExecuteBatchRequestItemPayload {
+    [key: string]: any;
+} 
 
 export type WidgetExecuteBatchResponse = {
     batchId: string;
@@ -22,7 +28,7 @@ export type WidgetExecuteBatchResponse = {
 export type WidgetExecuteBatchResponseItem = {
     itemId: string;
     batchId: string;
-    widgetId: string;
+    widgetId: EnumWidgetId;
     success: boolean;
     data: any
 }
