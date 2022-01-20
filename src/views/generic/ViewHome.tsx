@@ -6,7 +6,7 @@ import LayoutWidget from '../../layouts/LayoutWidget';
 
 export default function ViewAustralianCompanyNumberGenerator() {
     return (
-        <LayoutDefault>
+        <LayoutDefault loading={false}>
             HomePage
         </LayoutDefault>
     )
