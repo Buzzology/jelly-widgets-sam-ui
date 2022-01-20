@@ -5,7 +5,11 @@ import LayoutWidget from '../../layouts/LayoutWidget';
 
 export default function ViewAustralianCompanyNumberValidator() {
     return (
-        <LayoutWidget>
+        <LayoutWidget
+            title="Australian Company Number Validator"
+            description="Validate Australian Company Numbers"
+            loading={false}
+        >
             <AustralianCompanyNumberValidator />
         </LayoutWidget>
     )

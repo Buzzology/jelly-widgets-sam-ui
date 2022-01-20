@@ -5,7 +5,11 @@ import LayoutWidget from '../../layouts/LayoutWidget';
 
 export default function ViewAustralianCompanyNumberGenerator() {
     return (
-        <LayoutWidget>
+        <LayoutWidget
+            title="Australian Company Number Generator"
+            description="Generate Australian Company Numbers"
+            loading={false}
+        >
             <AustralianCompanyNumberGenerator />
         </LayoutWidget>
     )
