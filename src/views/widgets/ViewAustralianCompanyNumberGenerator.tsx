@@ -1,6 +1,6 @@
 import React from 'react';
 import AustralianCompanyNumberGenerator from '../../components/widgets/AustralianCompanyNumberGenerator';
-import LayoutWidget from '../../layouts/LayoutWidget';
+import LayoutWidget from '../../layouts/layoutWidget/LayoutWidget';
 
 
 export default function ViewAustralianCompanyNumberGenerator() {
@@ -9,6 +9,11 @@ export default function ViewAustralianCompanyNumberGenerator() {
             title="Australian Company Number Generator"
             description="Generate Australian Company Numbers"
             loading={false}
+            headerSlug="widgets"
+            headerTitle="ACN Generator"
+            headerDescription="Australian Company Number Generator"
+            buttonText="Learn more"
+            buttonLink="https://www.gov.au/business-and-industry/business-registration-and-tax/company-numbers-and-registration/company-numbers-and-registration-overview"
         >
             <AustralianCompanyNumberGenerator />
         </LayoutWidget>
