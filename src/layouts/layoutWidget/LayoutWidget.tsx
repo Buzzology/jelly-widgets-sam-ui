@@ -3,8 +3,8 @@ import LayoutDefault from '../LayoutDefault';
 import './layoutWidget.css';
 
 type LayoutWigdetProps = {
-    children: React.ReactNode;
-    loading: boolean;
+    children: React.ReactNode,
+    loading: boolean,
     headerSlug: string,
     headerTitle: string,
     headerDescription: string,
