@@ -1,3 +1,4 @@
+import { Message } from "./Message"
 import { EnumWidgetId } from "./Widget"
 
 export type WidgetExecuteBatchRequest = {
@@ -30,5 +31,6 @@ export type WidgetExecuteBatchResponseItem = {
     batchId: string;
     widgetId: EnumWidgetId;
     success: boolean;
-    data: any
+    messages: Array<Message>;
+    data: any;
 }
