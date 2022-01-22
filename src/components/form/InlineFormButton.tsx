@@ -15,7 +15,7 @@ export default function InlineFormButton({
     loading,
 }: IInlineFormButtonProps) {
     return (
-        <div style={{ position: 'relative' }}>
+        <div className="relative">
             <div className={`
             absolute
             bg-white

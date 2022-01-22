@@ -4,6 +4,7 @@ interface IPrimaryButtonProps {
     label: string;
     onClick: () => void;
     additionalClasses?: string;
+    loading?: boolean;
 }
 
 
@@ -11,13 +12,34 @@ export default function PrimaryButton({
     label,
     onClick,
     additionalClasses,
+    loading,
 }: IPrimaryButtonProps) {
     return (
-        <button
-            onClick={onClick}
-            aria-label={label}
-            className={`
-                mt-6
+        <div className="relative">
+            <div className={`
+            absolute
+            bg-white
+            w-full
+            text-center
+            h-full
+            transition-all
+            pt-2
+            ${loading ? 'visible' : 'invisible'}
+            `}
+                style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+            >
+                <span className="
+            text-sky-600
+            material-icons
+            text-md
+            animate-spin
+            "
+                >donut_large</span>
+            </div>
+            <button
+                onClick={onClick}
+                aria-label={label}
+                className={`
                 text-white
                 font-bold
                 py-2
@@ -26,9 +48,11 @@ export default function PrimaryButton({
                 border-white border
                 bg-sky-600
                 w-full
-                md:w-auto
                 ${additionalClasses}
             `}
-        >{label}</button>
+            >
+                {label}
+            </button>
+        </div>
     )
 }
