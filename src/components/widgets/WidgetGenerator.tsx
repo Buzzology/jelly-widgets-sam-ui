@@ -8,12 +8,18 @@ import WidgetWrapper from './WidgetWrapper';
 
 interface IWidgetGeneratorProps {
     widgetId: EnumWidgetId;
+    labelText: string;
     getGeneratedValue: (batchItem?: WidgetExecuteBatchResponseItem) => string;
     getAdditionalInfoNodes: (batchItem?: WidgetExecuteBatchResponseItem) => ReactNode;
 }
 
 
-export default function WidgetGenerator({ widgetId, getGeneratedValue, getAdditionalInfoNodes }: IWidgetGeneratorProps) {
+export default function WidgetGenerator({
+    widgetId,
+    labelText,
+    getGeneratedValue,
+    getAdditionalInfoNodes,
+ }: IWidgetGeneratorProps) {
     const [currentDisplayValue, setCurrentDisplayValue] = useState<string>("");
     const [additionalDisplayInfo, setAdditionalDisplayInfo] = useState<ReactNode>(undefined);
     const { Execute, Loading, BatchItems, CurrentBatchId } = useWidgetExecutor();
@@ -48,7 +54,7 @@ export default function WidgetGenerator({ widgetId, getGeneratedValue, getAdditi
                             htmlFor="txt-generate"
                             className="absolute left-0 -top-3.5 text-sky-600 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                         >
-                            Australian Company Number
+                            {labelText}
                         </label>
                     </div>
                 </div>
