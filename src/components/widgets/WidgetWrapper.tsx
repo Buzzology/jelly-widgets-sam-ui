@@ -7,7 +7,7 @@ export default function WidgetWrapper({
     children: React.ReactNode,
 }) {
     return (
-        <div className="shadow-2xl rounded-xl p-6">
+        <div className="shadow-2xl rounded-xl p-6 border border-gray-100">
             {children}
         </div>
     )

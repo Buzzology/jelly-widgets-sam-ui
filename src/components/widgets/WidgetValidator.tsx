@@ -51,7 +51,7 @@ export default function WidgetValidator({
                             name="txt-validate"
                             type="text"
                             className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 pt-2 leading-tight focus:outline-none"
-                            placeholder=""
+                            placeholder="Enter a value"
                             onChange={onValueChangeHandler}
                         />
                         <label
