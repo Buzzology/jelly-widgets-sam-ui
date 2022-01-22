@@ -14,7 +14,7 @@ export default function Header() {
 
         try {
             if (await Contact({
-                email: "",
+                email,
                 message: "this was a newsletter subscription request",
                 subscribe: true,
             })) {
