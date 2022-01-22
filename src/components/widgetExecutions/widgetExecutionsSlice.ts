@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { bindActionCreators } from 'redux';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { WidgetExecuteBatchRequest, WidgetExecuteBatchResponseItem } from '../../@types/WidgetExecuteBatch';
 import { RootState } from '../../store/root';
 import { WidgetRequestsExecuteBatch } from './widgetExecutionsApi';

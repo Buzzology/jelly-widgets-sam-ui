@@ -28,15 +28,17 @@ export default function WidgetGenerator({
         await Execute(widgetId);
     }
 
+    const batchItem = BatchItems?.[0];
+
     // Invoke the callback to ensure that we show the desired generated value.
     useEffect(() => {
-        setCurrentDisplayValue(getGeneratedValue(BatchItems?.[0]));
-    }, [CurrentBatchId]);
+        setCurrentDisplayValue(getGeneratedValue(batchItem));
+    }, [CurrentBatchId, batchItem, getGeneratedValue]);
 
     // Invoke the callback to ensure that we show the desired additional info.
     useEffect(() => {
-        setAdditionalDisplayInfo(getAdditionalInfoNodes(BatchItems?.[0]));
-    }, [CurrentBatchId]);
+        setAdditionalDisplayInfo(getAdditionalInfoNodes(batchItem));
+    }, [CurrentBatchId, batchItem, getAdditionalInfoNodes]);
 
     return (
         <WidgetWrapper>

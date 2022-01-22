@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 
-export default function() {
+export default function Header() {
     return (
         <nav className="flex items-center justify-between flex-wrap bg-sky-600 p-6">
             <div className="container">
