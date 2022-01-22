@@ -12,7 +12,7 @@ export default function AustralianCompanyNumberGenerator() {
             getAdditionalInfoNodes={(batchItem) => (
                 batchItem ? (
                     <div className="text-gray-500 text-sm">
-                        Check Digit: {batchItem?.data?.checkDigit}
+                        The last number ({batchItem.data?.checkDigit}) is used as a check digit to ensure that the ACN is valid.
                     </div>
                 ) : null
             )}
