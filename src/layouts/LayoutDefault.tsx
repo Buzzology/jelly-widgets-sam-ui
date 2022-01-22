@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 import Header from './Header';
 import './logo.css';
 
@@ -6,7 +7,7 @@ const LayoutDefault = ({ children, loading }: { children: React.ReactNode, loadi
     return (
         <>
             <Header />
-            <main>
+            <main className="pb-10 min-h-screen">
                 {!loading && (
                     children
                 )}
@@ -14,6 +15,7 @@ const LayoutDefault = ({ children, loading }: { children: React.ReactNode, loadi
             <div style={{ position: "fixed", bottom: 0, right: 0, height: "75px" }}>
                 {/* <MessagesList /> */}
             </div>
+            <Footer />
         </>
     )
 }
