@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    a.text-link {
+        @apply text-sky-700;
+        @apply font-normal;
+        @apply transition-colors;
+    }
+    a.text-link:hover {
+        @apply text-sky-500;
+    }
+}

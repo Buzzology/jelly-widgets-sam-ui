@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AustralianCompanyNumberGenerator from '../../components/widgets/AustralianCompanyNumberGenerator';
 import LayoutWidget from '../../layouts/layoutWidget/LayoutWidget';
+import { GetAcnValidatorLink } from '../../routes/RouteLinkHelpers';
 
 
 export default function ViewAustralianCompanyNumberGenerator() {
@@ -17,7 +19,7 @@ export default function ViewAustralianCompanyNumberGenerator() {
                 <div className="col-span-12 md:col-span-7">
                     <h2 className="text-3xl pb-4">Australian Company Number Generator</h2>
                     The Australian Company Number (ACN) is a unique nine digit identifier issued to each company. They
-                    often appear on letterheads and emails and other formal documents sent from the company. 
+                    often appear on letterheads and emails and other formal documents sent from the company.
                 </div>
 
                 <div className="col-span-12 md:col-span-6">
@@ -44,8 +46,17 @@ export default function ViewAustralianCompanyNumberGenerator() {
                     <h3 className="text-2xl pb-4">Useful Links</h3>
                     There are a number of additional resources that may be helpful when using this tool:
                     <ul className="pl-8 pt-4 list-disc">
-                        <li>TODO: LINK Australian Company Number Validator</li>
-                        <li>TODO: ASIC overview of ACNs: https://asic.gov.au/for-business/registering-a-company/steps-to-register-a-company/australian-company-numbers/</li>
+                        <li><Link to={GetAcnValidatorLink()} className="text-link">Australian Company Number Validator</Link></li>
+                        <li>
+                            <a
+                                href="https://asic.gov.au/for-business/registering-a-company/steps-to-register-a-company/australian-company-numbers/"
+                                className="text-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                ASIC overview of ACNs
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
