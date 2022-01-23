@@ -30,7 +30,7 @@ export default function Header() {
 
     return (
         <footer className="flex justify-center px-4 text-gray-100 bg-gray-800">
-            <div className="container py-6">
+            <div className="container py-6 max-w-lg">
                 <h1 className="text-center text-lg font-bold lg:text-2xl">
                     Join the feed to get the latest on <br />
                     widgest, updates and news.

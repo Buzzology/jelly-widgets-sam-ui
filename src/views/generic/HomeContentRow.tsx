@@ -22,7 +22,7 @@ export default function HomeContentRow({
         <div className="flex justify-center p-4 pb-10 mb-10">
         <div className="grid grid-cols-12 gap-5">
           <div
-            className="col-span-12 md:col-span-7 lg:col-span-5 flex items-center p-4"
+            className="col-span-12 md:col-span-6 flex items-center p-4"
         >
             <div>
               <h2 className="text-bold text-2xl mb-3">{title}</h2>
@@ -52,7 +52,7 @@ export default function HomeContentRow({
             </div>
           </div>
           <div
-            className={`col-span-12 md:col-span-5 lg:col-span-7 p-4 ${reverseImageOrder ? 'order-last md:order-first' : ''}`}
+            className={`col-span-12 md:col-span-6 p-4 ${reverseImageOrder ? 'order-last md:order-first' : ''}`}
           >
             <img
               src={imagePath}
