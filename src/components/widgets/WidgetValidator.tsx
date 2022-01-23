@@ -54,7 +54,7 @@ export default function WidgetValidator({
                             placeholder=""
                             onChange={onValueChangeHandler}
                         />
-                        <span className={`animate-ping absolute left-0 bottom-1 bg-sky-600 w-1 h-1 rounded-full ${currentInputValue || Loading ? "invisible" : "visible"}`}></span>
+                        <span className={`animate-ping absolute left-0 bottom-1 bg-sky-600 w-1 h-1 rounded-full ${currentInputValue || Loading || batchItem ? "invisible" : "visible"}`}></span>
                         <label
                             htmlFor="txt-validate"
                             className="absolute left-0 -top-3.5 text-sky-600 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
