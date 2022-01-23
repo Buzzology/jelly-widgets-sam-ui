@@ -5,6 +5,7 @@ import ViewContact from './views/generic/ViewContact';
 import ViewHome from './views/generic/ViewHome';
 import ViewAustralianCompanyNumberGenerator from './views/widgets/ViewAustralianCompanyNumberGenerator';
 import ViewAustralianCompanyNumberValidator from './views/widgets/ViewAustralianCompanyNumberValidator';
+import ViewWidgetsList from './views/widgets/ViewWidgetsList';
 
 
 function App() {
@@ -13,11 +14,11 @@ function App() {
     <Routes>
       <Route path="/">
         <Route index element={<ViewHome />} />
-        {/* <Route path="widgets" element={<Teams />}> */}
         <Route path="contact" element={<ViewContact />} />
         <Route path="widgets">
           <Route path={`${EnumWidgetId.AUSTRALIAN_COMPANY_NUMBER_GENERATOR}/*`} element={<ViewAustralianCompanyNumberGenerator />} />
           <Route path={`${EnumWidgetId.AUSTRALIAN_COMPANY_NUMBER_VALIDATOR}/*`} element={<ViewAustralianCompanyNumberValidator />} />
+          <Route path={``} element={<ViewWidgetsList />} />
           {/* <Route path="new" element={<NewTeamForm />} />
           <Route index element={<LeagueStandings />} /> */}
         </Route>

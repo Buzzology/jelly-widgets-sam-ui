@@ -12,8 +12,8 @@ export default function ViewAustralianCompanyNumberGenerator() {
             headerSlug="widgets"
             headerTitle="ACN Generator"
             headerDescription="The ACN generator can be used to create valid Australian Company Numbers."
-            buttonText="Learn more"
-            buttonLink="https://www.gov.au/business-and-industry/business-registration-and-tax/company-numbers-and-registration/company-numbers-and-registration-overview"
+            buttonText="More Widgets"
+            buttonLink="/widgets"
         >
             <div className="grid gap-y-10 md:gap-y-40  md:gap-x-20 grid-cols-12">
                 <div className="col-span-12 md:col-span-7">
