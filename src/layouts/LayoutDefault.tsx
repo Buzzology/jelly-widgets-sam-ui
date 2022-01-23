@@ -7,7 +7,7 @@ const LayoutDefault = ({ children, loading }: { children: React.ReactNode, loadi
     return (
         <>
             <Header />
-            <main className="pb-10 min-h-screen">
+            <main className="min-h-screen">
                 {!loading && (
                     children
                 )}

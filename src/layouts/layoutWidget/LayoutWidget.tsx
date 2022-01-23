@@ -59,7 +59,7 @@ const LayoutWidget = ({
                 </div>
             </div>
             <div className="min-h-screen flex justify-center">
-                <div className="max-w-md md:max-w-5xl flex-grow pt-10">
+                <div className="max-w-md md:max-w-5xl flex-grow pt-10 pb-10">
                     {children}
                 </div>
             </div>
