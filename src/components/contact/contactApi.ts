@@ -14,10 +14,10 @@ export async function Contact(request: IContactProps): Promise<boolean> {
             body: JSON.stringify(request),
         });
 
-        if (!resp.ok) {
-            throw new Error(resp.statusText);
+        if (resp.ok) {
+            return true
         } else {
-            return true;
+            throw new Error(resp.statusText);
         }
     } catch (e) {
         console.error(e);

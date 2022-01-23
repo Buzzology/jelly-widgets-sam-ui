@@ -44,7 +44,7 @@ export default function Header() {
                                 style={{ paddingBottom: "5px", verticalAlign: "middle" }}
                             >
                                 check_circle
-                            </div> Subscribed using <span className="text-gray-400">{email}chrisowens@live.com.au</span>
+                            </div> Subscribed using <span className="text-gray-400">{email}</span>
                         </div>
                     ) : (
                         <div className="bg-white rounded-lg">
