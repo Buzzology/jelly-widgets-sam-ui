@@ -2,7 +2,7 @@ import React from 'react';
 
 interface IPrimaryButtonProps {
     label: string;
-    onClick: () => void;
+    onClick: (e?: any) => void;
     additionalClasses?: string;
     loading?: boolean;
 }
@@ -15,7 +15,7 @@ export default function PrimaryButton({
     loading,
 }: IPrimaryButtonProps) {
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <div className={`
             absolute
             bg-white

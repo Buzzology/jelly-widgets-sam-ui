@@ -10,4 +10,11 @@
     a.text-link:hover {
         @apply text-sky-500;
     }
+    .split-background {
+        background-image: url("/public/img/clouds-transparent-animated.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
 }
