@@ -1,5 +1,5 @@
-# Jelly Widgets AWS SAM UI
-This project implements a React UI for the AWS SAM implementation of JellyWidgets.
+# Tester Widgets AWS SAM UI
+This project implements a React UI for the AWS SAM implementation of TesterWidgets.
 
 ## Notes
 Reference project for React: https://github.com/Buzzology/jelly-widgets/tree/master/UI
