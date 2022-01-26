@@ -9,10 +9,13 @@ Parameters:
     Description: Domain name for the website (example.com)
     Type: String
   HostedZoneID:
-    Description: Hosted zone for the s3 website
+    Description: This is the region HostedZoneID, NOT the route53 zone ID. Lookup the mappings here https://docs.aws.amazon.com/general/latest/gr/s3.html
     Type: String
   S3AliasTarget:
-    Description: Alias for the s3 bucket I think? TODO Confirm
+    Description: This is the s3 target alias. Lookup mappings here https://docs.aws.amazon.com/general/latest/gr/s3.html
+    Type: String
+  BaseApiUrl:
+    Description: This is the base api url that the react app should contact for payloads etc.
     Type: String
 
 Resources:
@@ -77,6 +80,16 @@ Resources:
         TTL: 900
         ResourceRecords:
         - !GetAtt WWWBucket.DomainName
+
+  # Create a parameter 
+  ParameterBaseApiUrl:
+    Type: AWS::SSM::Parameter
+    Properties: 
+      Description: Base API Url for the React App
+      Name: /testerwidgets/ui/prod/base-api-url
+      Type: String
+      Value: !Ref BaseApiUrl
+
 Outputs:
   WebsiteURL:
     Value: !GetAtt RootBucket.WebsiteURL
