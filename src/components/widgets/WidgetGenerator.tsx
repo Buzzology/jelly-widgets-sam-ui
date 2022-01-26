@@ -19,7 +19,7 @@ export default function WidgetGenerator({
     labelText,
     getGeneratedValue,
     getAdditionalInfoNodes,
- }: IWidgetGeneratorProps) {
+}: IWidgetGeneratorProps) {
     const [currentDisplayValue, setCurrentDisplayValue] = useState<string>("");
     const [additionalDisplayInfo, setAdditionalDisplayInfo] = useState<ReactNode>(undefined);
     const { Execute, Loading, BatchItems, CurrentBatchId } = useWidgetExecutor();
@@ -43,6 +43,14 @@ export default function WidgetGenerator({
     return (
         <WidgetWrapper>
             <div>
+                <div className="mt-3">
+                    <PrimaryButton
+                        label="Generate"
+                        onClick={generate}
+                        loading={Loading}
+                    />
+                </div>
+
                 <div className="flex items-center border rounded-lg pt-6 px-4 pb-4 border-sky-200">
                     <div className="relative">
                         <input
@@ -59,14 +67,6 @@ export default function WidgetGenerator({
                             {labelText}
                         </label>
                     </div>
-                </div>
-
-                <div className="mt-3">
-                    <PrimaryButton
-                        label="Generate"
-                        onClick={generate}
-                        loading={Loading}
-                    />
                 </div>
 
                 <div className="border rounded p-3 mt-6 border-gray-200 text-left h-32 overflow-y-scroll">
