@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   parameter-store:
-      PARAMETER_STORE_NAME: $PARAMETER_STORE_NAME
+      REACT_APP_BASE_API_URL: $/testerwidgets/ui/prod/base-api-url
 
 phases:
 
@@ -12,7 +12,8 @@ phases:
 
   pre_build:
     commands:
-      - echo "$PARAMETER_STORE_NAME" > .env
+      # - echo "$PARAMETER_STORE_NAME" > .env
+      - echo "$PARAMETER_STORE_NAME" > .test
       - echo "$PARAMETER_STORE_NAME" > .env.production
 
   build:

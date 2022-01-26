@@ -1,0 +1,68 @@
+# AWSTemplateFormatVersion: '2010-09-09'
+## TODO: Need to come back and implement this with cloudformation.
+
+# Parameters:
+#   CredentialsArn:
+#     Type: String
+#   RepositoryId:
+#     Type: String
+#   BranchName:
+#     Type: String
+#   ProjectName:
+#     Type: String
+  
+# Resources:
+#   CodePipelineRole:
+#     Type: AWS::IAM::Role
+#     Properties:
+#       AssumeRolePolicyDocument:
+#         Statement:
+#           - Effect: Allow
+#             Principal:
+#               Service:
+#                 - codepipeline.amazonaws.com
+#             Action:
+#               - sts:AssumeRole
+#       Path: /
+#       Policies:
+#         - PolicyName: code-pipeline
+#           PolicyDocument:
+#             Statement:
+#               - Effect: Allow
+#                 Action:
+#                   - s3:*
+#                   - cloudwatch:*
+#                   - cloudformation:*
+#                   - iam:PassRole
+#                   - codebuild:*
+#                   - codestar-connections:*
+#                 Resource: "*"
+
+#   DeployRole:
+#     Type: AWS::IAM::Role
+#     Properties:
+#       AssumeRolePolicyDocument:
+#         Statement:
+#           - Effect: Allow
+#             Principal:
+#               Service:
+#                 - codepipeline.amazonaws.com
+#                 - cloudformation.amazonaws.com
+#             Action:
+#               - sts:AssumeRole
+#       Path: /
+#       ManagedPolicyArns:
+#         - arn:aws:iam::aws:policy/AdministratorAccess
+
+#   S3Bucket:
+#     Type: AWS::S3::Bucket
+#     Properties:
+#       # BucketEncryption:
+#       #   ServerSideEncryptionConfiguration:
+#       #     - ServerSideEncryptionByDefault:
+#       #         SSEAlgorithm: AES256
+#       PublicAccessBlockConfiguration:
+#         BlockPublicAcls: true
+#         BlockPublicPolicy: true
+#         IgnorePublicAcls: true
+#         RestrictPublicBuckets: true
