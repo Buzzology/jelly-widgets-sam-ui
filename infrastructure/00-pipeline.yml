@@ -1,5 +1,6 @@
 # AWSTemplateFormatVersion: '2010-09-09'
 ## TODO: Need to come back and implement this with cloudformation.
+## This seems to have a good example: https://stelligent.com/2017/03/09/using-parameter-store-with-aws-codepipeline/
 
 # Parameters:
 #   CredentialsArn:
