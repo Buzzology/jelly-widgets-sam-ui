@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-s3.html
+# Create stack: `aws cloudformation create-stack --stack-name --on-failure DELETE testerwidgets-ui-prod --template-body file://./infrastructure/01-infrastructure.yml --parameters file://./infrastructure/01-infrastructure-parameters.json`
+# Update stack: `aws cloudformation update-stack --stack-name testerwidgets-ui-prod --template-body file://./infrastructure/01-infrastructure.yml --parameters file://./infrastructure/01-infrastructure-parameters.json`.
+Parameters:
+  RootDomainName:
+    Description: Domain name for the website (example.com)
+    Type: String
+  HostedZoneID:
+    Description: Hosted zone for the s3 website
+    Type: String
+  S3AliasTarget:
+    Description: Alias for the s3 bucket I think? TODO Confirm
+    Type: String
+
+Resources:
+  RootBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref RootDomainName
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+  WWWBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub
+          - www.${Domain}
+          - Domain: !Ref RootDomainName
+      AccessControl: BucketOwnerFullControl
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Ref RootBucket
+  DNS:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub 
+          - ${Domain}.
+          - Domain: !Ref RootDomainName
+      Comment: Zone apex alias.
+      RecordSets:
+      - 
+        Name: !Ref RootDomainName
+        Type: A
+        AliasTarget:
+          HostedZoneId: !Ref HostedZoneID
+          DNSName: !Ref S3AliasTarget
+      -
+        Name: !Sub
+            - www.${Domain}
+            - Domain: !Ref RootDomainName
+        Type: CNAME
+        TTL: 900
+        ResourceRecords:
+        - !GetAtt WWWBucket.DomainName
+Outputs:
+  WebsiteURL:
+    Value: !GetAtt RootBucket.WebsiteURL
+    Description: URL for website hosted on S3
+
