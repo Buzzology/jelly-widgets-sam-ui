@@ -43,7 +43,7 @@ export default function WidgetGenerator({
     return (
         <WidgetWrapper>
             <div>
-                <div className="mt-3">
+                <div>
                     <PrimaryButton
                         label="Generate"
                         onClick={generate}
@@ -51,7 +51,7 @@ export default function WidgetGenerator({
                     />
                 </div>
 
-                <div className="flex items-center border rounded-lg pt-6 px-4 pb-4 border-sky-200">
+                <div className="mt-3 flex items-center border rounded-lg pt-6 px-4 pb-4 border-sky-200">
                     <div className="relative">
                         <input
                             name="txt-generate"
