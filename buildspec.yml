@@ -3,7 +3,7 @@ version: 0.2
 env:
   parameter-store:
     # REACT_APP_BASE_API_URL: $/testerwidgets/ui/prod/base-api-url
-    REACT_APP_BASE_API_URL: testerwidgets/ui/prod/base-api-url
+    REACT_APP_BASE_API_URL: /testerwidgets/ui/prod/base-api-url
 
 phases:
 
