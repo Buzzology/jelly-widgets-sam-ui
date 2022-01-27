@@ -1,0 +1,68 @@
+# https://github.com/aws-samples/amazon-cloudfront-secure-static-site/blob/master/templates/custom-resource.yaml
+# NOTE: We need to create the certificate in us-east-1 before we can create the site in another region.
+
+# Create stack: `aws cloudformation create-stack --stack-name acm-certificate-00 --on-failure DELETE --template-body file://./main.yml --parameters file://./parameters.json --capabilities CAPABILITY_AUTO_EXPAND`
+# Update stack: `aws cloudformation update-stack --stack-name testerwidgets-ui-prod --template-body file://./infrastructure/01-infrastructure.yml --parameters file://./infrastructure/01-infrastructure-parameters.json`.
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ACFS3 - Cert Provider with DNS validation
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  SubDomain:
+    Description: The part of a website address before your DomainName - e.g. www or img
+    Type: String
+    Default: www
+    AllowedPattern: ^[^.]*$
+  DomainName:
+    Description: The part of a website address after your SubDomain - e.g. example.com
+    Type: String
+  HostedZoneId:
+    Description: HostedZoneId for the domain e.g. Z23ABC4XYZL05B
+    Type: String
+  CreateApex:
+    Description: Create an Apex Alias in CloudFront distribution - yes/no
+    Type: String
+    Default: 'no'
+    AllowedValues: ['yes','no']
+
+Resources:
+
+  AWSTemplateFormatVersion: '2010-09-09'
+Description: ACFS3 - Certificate creation
+
+Parameters:
+  DomainName:
+    Type: String
+  SubDomain:
+    Type: String
+  CreateApex:
+    Type: String
+  HostedZoneId:
+    Type: String
+
+Conditions:
+  CreateApexConfig:  !Equals 
+    - !Ref CreateApex
+    - 'yes'
+
+Resources:
+
+  # NOTE: This certificate is created in us-east-1 (only supported region).
+  Certificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties: 
+      DomainName: !Sub '${SubDomain}.${DomainName}'
+      SubjectAlternativeNames:
+        Fn::If:
+          - CreateApexConfig
+          - - Ref: DomainName
+          - Ref: AWS::NoValue
+      DomainValidationOptions:
+        - DomainName: !Sub '${SubDomain}.${DomainName}'
+          HostedZoneId: !Ref HostedZoneId
+      ValidationMethod: DNS
+
+Outputs:
+  CertificateArn: 
+    Description: Issued certificate
+    Value: !Ref Certificate

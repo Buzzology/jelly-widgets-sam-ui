@@ -1,0 +1,105 @@
+# https://github.com/aws-samples/amazon-cloudfront-secure-static-site/blob/master/templates/custom-resource.yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ACFS3 - Cert Provider with DNS validation
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+
+  CopyCustomResource:
+    Type: "AWS::CloudFormation::CustomResource"
+    Properties:
+      ServiceToken: !GetAtt CopyFunction.Arn
+
+  S3BucketLogs:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      AccessControl: LogDeliveryWrite
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      Tags:
+        - Key: Solution
+          Value: ACFS3
+
+  S3BucketRoot:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LoggingConfiguration:
+        DestinationBucketName: !Ref 'S3BucketLogs'
+        LogFilePrefix: 'origin/'
+      Tags:
+        - Key: Solution
+          Value: ACFS3
+
+  # CopyLayerVersion:
+  #   Type: "AWS::Serverless::LayerVersion"
+  #   Properties:
+  #     ContentUri: ../witch.zip
+  #     CompatibleRuntimes:
+  #       - nodejs12.x
+
+  # AcmCertificateStack:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: ./acm-certificate.yaml
+  #     Parameters:
+  #       SubDomain: !Ref SubDomain
+  #       DomainName: !Ref DomainName
+  #       CreateApex: !Ref CreateApex
+  #       HostedZoneId: !Ref HostedZoneId
+  #     Tags:
+  #       - Key: Solution
+  #         Value: ACFS3
+
+  CloudFrontStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: ./cloudfront-site.yaml
+      Parameters:
+        CertificateArn: !GetAtt AcmCertificateStack.Outputs.CertificateArn
+        DomainName: !Ref DomainName
+        SubDomain: !Ref SubDomain
+        CreateApex: !Ref CreateApex
+        S3BucketRoot: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
+        S3BucketRootName: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
+        S3BucketRootArn: !GetAtt CustomResourceStack.Outputs.S3BucketRootArn
+        S3BucketLogs: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
+        S3BucketLogsName: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
+      Tags:
+        - Key: Solution
+          Value: ACFS3
+
+Outputs:
+  SolutionVersion:
+    Value: !FindInMap [Solution, Constants, Version]
+  CopyFunction:
+    Description: S3 helper function
+    Value: !GetAtt CustomResourceStack.Outputs.CopyFunction
+  S3BucketLogs:
+    Description: Logging bucket
+    Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
+  S3BucketRoot:
+    Description: Website bucket
+    Value: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
+  S3BucketLogsName:
+    Description: Logging bucket name
+    Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
+  S3BucketRootName:
+    Description: Website bucket name
+    Value: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
+  CertificateArn:
+    Description: Issued certificate
+    Value: !GetAtt AcmCertificateStack.Outputs.CertificateArn
+  CFDistributionName:
+    Description: CloudFront distribution
+    Value: !GetAtt CloudFrontStack.Outputs.CloudFrontDistribution
+  CloudFrontDomainName:
+    Description: Website address
+    Value: !GetAtt CloudFrontStack.Outputs.CloudFrontDomainName

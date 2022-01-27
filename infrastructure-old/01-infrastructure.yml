@@ -1,5 +1,8 @@
 AWSTemplateFormatVersion: 2010-09-09
 
+# Look into this for putting cloudfront in front: https://github.com/aws-samples/amazon-cloudfront-secure-static-site/tree/master/templates
+# ^ uses this guide: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html
+
 
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-s3.html
 # Create stack: `aws cloudformation create-stack --stack-name --on-failure DELETE testerwidgets-ui-prod --template-body file://./infrastructure/01-infrastructure.yml --parameters file://./infrastructure/01-infrastructure-parameters.json`
