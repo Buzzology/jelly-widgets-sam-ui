@@ -3,25 +3,43 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: ACFS3 - Cert Provider with DNS validation
 Transform: AWS::Serverless-2016-10-31
 
+Parameters:
+  SubDomain:
+    Description: The part of a website address before your DomainName - e.g. www or img
+    Type: String
+    Default: www
+    AllowedPattern: ^[^.]*$
+  DomainName:
+    Description: The part of a website address after your SubDomain - e.g. example.com
+    Type: String
+  HostedZoneId:
+    Description: HostedZoneId for the domain e.g. Z23ABC4XYZL05B
+    Type: String
+  CreateApex:
+    Description: Create an Apex Alias in CloudFront distribution - yes/no
+    Type: String
+    Default: 'no'
+    AllowedValues: ['yes','no']
+  CertificateArn:
+    Description: This is the certicate arn for cloudfront. See 00-cloudfront-and-s3.
+    Type: String
+
 Resources:
 
-  CopyCustomResource:
-    Type: "AWS::CloudFormation::CustomResource"
-    Properties:
-      ServiceToken: !GetAtt CopyFunction.Arn
+  # CopyCustomResource:
+  #   Type: "AWS::CloudFormation::CustomResource"
+  #   Properties:
+  #     ServiceToken: !GetAtt CopyFunction.Arn
 
-  S3BucketLogs:
-    Type: AWS::S3::Bucket
-    DeletionPolicy: Retain
-    Properties:
-      AccessControl: LogDeliveryWrite
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
-      Tags:
-        - Key: Solution
-          Value: ACFS3
+  # S3BucketLogs:
+  #   Type: AWS::S3::Bucket
+  #   DeletionPolicy: Retain
+  #   Properties:
+  #     AccessControl: LogDeliveryWrite
+  #     BucketEncryption:
+  #       ServerSideEncryptionConfiguration:
+  #         - ServerSideEncryptionByDefault:
+  #             SSEAlgorithm: AES256
 
   S3BucketRoot:
     Type: AWS::S3::Bucket
@@ -31,12 +49,9 @@ Resources:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
-      LoggingConfiguration:
-        DestinationBucketName: !Ref 'S3BucketLogs'
-        LogFilePrefix: 'origin/'
-      Tags:
-        - Key: Solution
-          Value: ACFS3
+      # LoggingConfiguration:
+      #   DestinationBucketName: !Ref 'S3BucketLogs'
+      #   LogFilePrefix: 'origin/'
 
   # CopyLayerVersion:
   #   Type: "AWS::Serverless::LayerVersion"
@@ -70,27 +85,24 @@ Resources:
         S3BucketRoot: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
         S3BucketRootName: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
         S3BucketRootArn: !GetAtt CustomResourceStack.Outputs.S3BucketRootArn
-        S3BucketLogs: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
-        S3BucketLogsName: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
-      Tags:
-        - Key: Solution
-          Value: ACFS3
+        # S3BucketLogs: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
+        # S3BucketLogsName: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
 
 Outputs:
-  SolutionVersion:
-    Value: !FindInMap [Solution, Constants, Version]
-  CopyFunction:
-    Description: S3 helper function
-    Value: !GetAtt CustomResourceStack.Outputs.CopyFunction
-  S3BucketLogs:
-    Description: Logging bucket
-    Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
+  # SolutionVersion:
+  #   Value: !FindInMap [Solution, Constants, Version]
+  # CopyFunction:
+  #   Description: S3 helper function
+  #   Value: !GetAtt CustomResourceStack.Outputs.CopyFunction
+  # S3BucketLogs:
+  #   Description: Logging bucket
+  #   Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
   S3BucketRoot:
     Description: Website bucket
     Value: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
-  S3BucketLogsName:
-    Description: Logging bucket name
-    Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
+  # S3BucketLogsName:
+  #   Description: Logging bucket name
+  #   Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
   S3BucketRootName:
     Description: Website bucket name
     Value: !GetAtt CustomResourceStack.Outputs.S3BucketRootName

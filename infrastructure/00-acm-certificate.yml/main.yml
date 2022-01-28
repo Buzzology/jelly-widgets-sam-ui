@@ -1,4 +1,4 @@
-# https://github.com/aws-samples/amazon-cloudfront-secure-static-site/blob/master/templates/custom-resource.yaml
+# Cobbled together from: https://github.com/aws-samples/amazon-cloudfront-secure-static-site/tree/master/templates
 # NOTE: We need to create the certificate in us-east-1 before we can create the site in another region.
 
 # Create stack: `aws cloudformation create-stack --stack-name acm-certificate-00 --region us-east-1 --on-failure DELETE --template-body file://./main.yml --parameters file://./parameters.json --capabilities CAPABILITY_AUTO_EXPAND`
