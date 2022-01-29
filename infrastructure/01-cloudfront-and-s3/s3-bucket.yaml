@@ -3,15 +3,15 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: S3 Bucket for cloudfront
 Transform: AWS::Serverless-2016-10-31
 
-# Parameters:
+Parameters:
 #   SubDomain:
 #     Description: The part of a website address before your DomainName - e.g. www or img
 #     Type: String
 #     Default: www
 #     AllowedPattern: ^[^.]*$
-#   DomainName:
-#     Description: The part of a website address after your SubDomain - e.g. example.com
-#     Type: String
+  DomainName:
+    Description: The part of a website address after your SubDomain - e.g. example.com
+    Type: String
 #   HostedZoneId:
 #     Description: HostedZoneId for the domain e.g. Z23ABC4XYZL05B
 #     Type: String
@@ -38,17 +38,29 @@ Resources:
   #         - ServerSideEncryptionByDefault:
   #             SSEAlgorithm: AES256
 
+  # S3BucketRoot:
+  #   Type: AWS::S3::Bucket
+  #   DeletionPolicy: Retain
+  #   Properties:
+  #     BucketEncryption:
+  #       ServerSideEncryptionConfiguration:
+  #         - ServerSideEncryptionByDefault:
+  #             SSEAlgorithm: AES256
+  #     # LoggingConfiguration:
+  #     #   DestinationBucketName: !Ref 'S3BucketLogs'
+  #     #   LogFilePrefix: 'origin/'
+
   S3BucketRoot:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Retain
     Properties:
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
-      # LoggingConfiguration:
-      #   DestinationBucketName: !Ref 'S3BucketLogs'
-      #   LogFilePrefix: 'origin/'
+      BucketName: !Ref DomainName
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      # BucketEncryption:
+      #   ServerSideEncryptionConfiguration:
+      #     - ServerSideEncryptionByDefault:
+      #         SSEAlgorithm: AES256
 
   # CopyLayerVersion:
   #   Type: "AWS::Serverless::LayerVersion"

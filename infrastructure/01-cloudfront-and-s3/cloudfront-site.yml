@@ -72,9 +72,9 @@ Resources:
           ResponseHeadersPolicyId: !Ref ResponseHeadersPolicy
         CustomErrorResponses:
           - ErrorCachingMinTTL: 60
-            ErrorCode: 200
+            ErrorCode: 404
             ResponseCode: 200
-            ResponsePagePath: 'index.html'
+            ResponsePagePath: '/index.html'
           - ErrorCachingMinTTL: 60
             ErrorCode: 403
             ResponseCode: 403
@@ -88,7 +88,7 @@ Resources:
         #   IncludeCookies: false
         #   Prefix: 'cdn/'
         Origins:
-          - DomainName: !Ref 'S3BucketRootName'
+          - DomainName: !Ref S3BucketRootName
             Id: !Sub 'S3-${AWS::StackName}-root'
             S3OriginConfig:
               OriginAccessIdentity:

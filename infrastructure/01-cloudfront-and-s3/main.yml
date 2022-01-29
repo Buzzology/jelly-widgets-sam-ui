@@ -1,9 +1,28 @@
 # Cobbled together from: https://github.com/aws-samples/amazon-cloudfront-secure-static-site/tree/master/templates
 # Create stack: `aws cloudformation create-stack --stack-name cloudfront-and-s3-01 --region us-east-2 --on-failure DELETE --template-body file://./main.yml --parameters file://./parameters.json --capabilities CAPABILITY_AUTO_EXPAND`
+# Step 1) Create a bucket for deployments: aws s3 mb s3://cloudfront-and-s3-01-deployment --region us-east-1
+#
+# Step 2) Package the deployment:
+# aws --region us-east-1 cloudformation package \
+#    --template-file main.yml \
+#    --s3-bucket cloudfront-and-s3-01-deployment-v2 \
+#    --output-template-file packaged.template
+#
+# Step 3) Deploy:
+# aws cloudformation deploy \
+#     --region us-east-1 \
+#     --parameter-overrides file://./parameters.json \
+#     --template-file packaged.template \
+#     --stack-name cloudfront-and-s3-01 \
+#     --capabilities CAPABILITY_AUTO_EXPAND
+#
+# View deployment events:
+# Step 4) aws cloudformation describe-stack-events --stack-name cloudfront-and-s3-01
+#
 AWSTemplateFormatVersion: 2010-09-09
 Description: TesterWidgets set for https site and cloudfront ditribution.
 
-Metadata:
+# Metadata:
   # AWS::CloudFormation::Interface:
   #   ParameterGroups:
   #     - Label:
@@ -78,12 +97,9 @@ Resources:
   S3BucketStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: ./s3-bucket.yml
-      # Parameters:
-      #   CertificateArn: !Ref CertificateArn
-      #   DomainName: !Ref DomainName
-      #   SubDomain: !Ref SubDomain
-      #   CreateApex: !Ref CreateApex
+      TemplateURL: ./s3-bucket.yaml
+      Parameters:
+        DomainName: !Ref DomainName
 
 
   CloudFrontStack:
@@ -121,7 +137,7 @@ Outputs:
     Value: !GetAtt S3BucketStack.Outputs.S3BucketRootName
   CertificateArn:
     Description: Issued certificate
-    Value: !GetRef CertificateArn
+    Value: !Ref CertificateArn
   CFDistributionName:
     Description: CloudFront distribution
     Value: !GetAtt CloudFrontStack.Outputs.CloudFrontDistribution
