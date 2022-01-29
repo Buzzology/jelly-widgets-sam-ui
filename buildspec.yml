@@ -4,6 +4,7 @@ env:
   parameter-store:
     # REACT_APP_BASE_API_URL: $/testerwidgets/ui/prod/base-api-url
     REACT_APP_BASE_API_URL: /testerwidgets/ui/prod/base-api-url
+    DISTRIBUTION_ID: /testerwidgets/ui/prod/distribution-id
 
 phases:
 
@@ -11,20 +12,20 @@ phases:
     commands:
       - npm install    
 
-  pre_build:
-    commands:
+  # pre_build:
+  #   commands:
       # - echo "$PARAMETER_STORE_NAME" > .env
-      - echo "$PARAMETER_STORE_NAME" > .test
-      - echo "$PARAMETER_STORE_NAME" > .env.production
+      # - echo "$PARAMETER_STORE_NAME" > .test
+      # - echo "$PARAMETER_STORE_NAME" > .env.production
 
   build:
     commands:
       - npm run-script build
 
-  # post_build:
-  #   commands:
-  #     - aws cloudfront create-invalidation --distribution-id=$DISTRIBUTION_ID --paths '/*'
-  #     - aws cloudfront create-invalidation --distribution-id=$DISTRIBUTION_ID --paths '/*'
+  post_build:
+    commands:
+      - aws cloudfront create-invalidation --distribution-id=$DISTRIBUTION_ID --paths '/*'
+      - aws cloudfront create-invalidation --distribution-id=$DISTRIBUTION_ID --paths '/*'
       
 artifacts:
   files:
