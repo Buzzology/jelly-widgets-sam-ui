@@ -9,6 +9,8 @@ import ReactGA from 'react-ga';
 
 ReactGA.initialize('G-FEE62SDTH9');
 
+ReactGA.pageview('/index');
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
