@@ -23,7 +23,7 @@ export default function ViewWidgetsList() {
                 buttonText="Contact"
                 buttonLink="/contact"
             />
-            <div className="min-h-screen flex justify-center">
+            <div className="min-h-screen flex justify-center p-6">
                 <div className="max-w-md md:max-w-5xl flex-grow pt-10 pb-10">
                     <div className="grid gap-y-10 md:gap-y-40  md:gap-x-20 grid-cols-12">
                         <div className="col-span-12 md:col-span-6">
