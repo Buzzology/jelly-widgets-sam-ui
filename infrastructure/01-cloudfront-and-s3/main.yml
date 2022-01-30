@@ -22,31 +22,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: TesterWidgets set for https site and cloudfront ditribution.
 
-# Metadata:
-  # AWS::CloudFormation::Interface:
-  #   ParameterGroups:
-  #     - Label:
-  #         default: Domain
-  #       Parameters:
-  #         - SubDomain
-  #         - DomainName
-
-# Mappings:
-#   Solution:
-#     Constants:
-#       Version: 'v0.7'
-
-# Rules:
-#   OnlyUsEast1:
-#     Assertions:
-#       - Assert:
-#           Fn::Equals:
-#             - !Ref AWS::Region
-#             - us-east-1
-#         AssertDescription: |
-#           This template can only be deployed in the us-east-1 region.
-#           This is because the ACM Certificate must be created in us-east-1
-
 Parameters:
   SubDomain:
     Description: The part of a website address before your DomainName - e.g. www or img
@@ -69,31 +44,7 @@ Parameters:
     Type: String
 
 Resources:
-  # Check if we even need this or if it's just for uploading the site
-  # CustomResourceStack:
-  #   Type: AWS::CloudFormation::Stack
-  #   Properties:
-  #     TemplateURL: ./custom-resource.yaml
-  #     Parameters:
-  #       CertificateArn: !Ref CertificateArn
-  #       DomainName: !Ref DomainName
-  #       SubDomain: !Ref SubDomain
-  #       CreateApex: !Ref CreateApex
-
-  # We don't need this I don't think, use previous step.
-  # AcmCertificateStack:
-  #   Type: AWS::CloudFormation::Stack
-  #   Properties:
-  #     TemplateURL: ./acm-certificate.yaml
-  #     Parameters:
-  #       SubDomain: !Ref SubDomain
-  #       DomainName: !Ref DomainName
-  #       CreateApex: !Ref CreateApex
-  #       HostedZoneId: !Ref HostedZoneId
-  #     Tags:
-  #       - Key: Solution
-  #         Value: ACFS3
-
+  
   S3BucketStack:
     Type: AWS::CloudFormation::Stack
     Properties:
@@ -114,24 +65,11 @@ Resources:
         S3BucketRoot: !GetAtt S3BucketStack.Outputs.S3BucketRoot
         S3BucketRootName: !GetAtt S3BucketStack.Outputs.S3BucketRootName
         S3BucketRootArn: !GetAtt S3BucketStack.Outputs.S3BucketRootArn
-        # S3BucketLogs: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
-        # S3BucketLogsName: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
 
 Outputs:
-  # SolutionVersion:
-  #   Value: !FindInMap [Solution, Constants, Version]
-  # CopyFunction:
-  #   Description: S3 helper function
-  #   Value: !GetAtt CustomResourceStack.Outputs.CopyFunction
-  # S3BucketLogs:
-  #   Description: Logging bucket
-  #   Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
   S3BucketRoot:
     Description: Website bucket
     Value: !GetAtt S3BucketStack.Outputs.S3BucketRoot
-  # S3BucketLogsName:
-  #   Description: Logging bucket name
-  #   Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
   S3BucketRootName:
     Description: Website bucket name
     Value: !GetAtt S3BucketStack.Outputs.S3BucketRootName
