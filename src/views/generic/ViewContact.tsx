@@ -10,7 +10,7 @@ export default function ViewAustralianCompanyNumberGenerator() {
     return (
         <LayoutDefault loading={false}>
             <div className="grid grid-cols-12">
-                <div className="col-span-6 flex justify-center items-center">
+                <div className="col-span-12 md:col-span-6 flex justify-center items-center">
                     <div className="max-w-lg">
                         <div className="p-2 pb-5 text-center">
                             <h1 className="text-4xl font-bold text-gray-900 mt-3">
@@ -23,7 +23,7 @@ export default function ViewAustralianCompanyNumberGenerator() {
                         <ContactForm />
                     </div>
                 </div>
-                <div className="col-span-6 split-background bg-sky-500"></div>
+                <div className="col-span-12 md:col-span-6 split-background bg-sky-500 hidden md:flex"></div>
             </div>
         </LayoutDefault>
     )
