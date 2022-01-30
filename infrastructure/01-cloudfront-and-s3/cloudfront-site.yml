@@ -173,7 +173,7 @@ Resources:
       FunctionConfig:
         Comment: !Sub 'Redirect from ${SubDomain}.${DomainName} to ${DomainName}'
         Runtime: cloudfront-js-1.0
-      Name: !Sub "${AWS::StackName}-redirectFunction"
+      Name: !Sub "${AWS::StackName}-redirectFun"
 
   # ResponseHeadersPolicy:
   #   Type: AWS::CloudFront::ResponseHeadersPolicy
