@@ -143,6 +143,10 @@ Resources:
             Id: redirectOrigin
             CustomOriginConfig:
               OriginProtocolPolicy: match-viewer
+        ViewerCertificate:
+          AcmCertificateArn: !Ref 'CertificateArn'
+          MinimumProtocolVersion: 'TLSv1.1_2016'
+          SslSupportMethod: 'sni-only'
               
   # Used by the www cloudfront instance in order to redirect to naked domain.
   RedirectFunction:
