@@ -25,7 +25,7 @@ phases:
   post_build:
     commands:
       # TODO: We need to invalidate the cache on deploy
-      - aws cloudfront create-invalidation --distribution-id=EN7EGT7EG52BL --paths '/*'
+      - aws cloudfront create-invalidation --distribution-id=$DISTRIBUTION_ID --paths '/*'
       
 artifacts:
   files:
