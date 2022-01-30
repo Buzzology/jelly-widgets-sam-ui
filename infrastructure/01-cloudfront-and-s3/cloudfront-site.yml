@@ -60,8 +60,9 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
-          - !Sub '${SubDomain}.${DomainName}'
-          - !If [ CreateApexConfig, !Ref DomainName, !Ref 'AWS::NoValue' ]
+          # - !Sub '${SubDomain}.${DomainName}'
+          # - !If [ CreateApexConfig, !Ref DomainName, !Ref 'AWS::NoValue' ]
+          - !Ref DomainName
         DefaultCacheBehavior:
           Compress: true
           DefaultTTL: 86400
@@ -135,7 +136,7 @@ Resources:
 
   # This is the www cloudfront instance, we just use it to redirect to the naked one. 
   # https://gist.github.com/mikebroberts/09e8c8b4aaac6e26149c4622fd492414
-  CloudFrontDistribution:
+  RedirectCloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
