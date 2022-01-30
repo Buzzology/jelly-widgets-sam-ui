@@ -65,6 +65,9 @@ Resources:
         S3BucketRoot: !GetAtt S3BucketStack.Outputs.S3BucketRoot
         S3BucketRootName: !GetAtt S3BucketStack.Outputs.S3BucketRootName
         S3BucketRootArn: !GetAtt S3BucketStack.Outputs.S3BucketRootArn
+        S3BucketWww: !GetAtt S3BucketStack.Outputs.S3BucketWww
+        S3BucketWwwName: !GetAtt S3BucketStack.Outputs.S3BucketWwwName
+        S3BucketWwwArn: !GetAtt S3BucketStack.Outputs.S3BucketWwwArn
 
 Outputs:
   S3BucketRoot:

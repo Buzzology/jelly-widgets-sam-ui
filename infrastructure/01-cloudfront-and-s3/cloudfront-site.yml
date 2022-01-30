@@ -31,6 +31,15 @@ Parameters:
   S3BucketRootArn:
     Description: Content Bucket locator
     Type: String
+  S3BucketWww:
+    Description: Content Bucket
+    Type: String
+  S3BucketWwwName:
+    Description: Content Bucket
+    Type: String
+  S3BucketWwwArn:
+    Description: Content Bucket locator
+    Type: String
   CreateApex: 
     Type: String
 
@@ -105,7 +114,7 @@ Resources:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:
       CloudFrontOriginAccessIdentityConfig:
-        Comment: !Sub 'CloudFront OAI for ${SubDomain}.${DomainName}'
+        Comment: !Sub 'CloudFront OAI for ${DomainName}'
 
   # Setup a dns entry for the apex/naked domain in Route53.
   ApexRoute53RecordSetGroup:
@@ -139,14 +148,23 @@ Resources:
               FunctionARN: !GetAtt RedirectFunction.FunctionMetadata.FunctionARN
         # CloudFront requires at least one origin, even though we're always going to redirect
         Origins:
-          - DomainName: !Sub '${SubDomain}.${DomainName}'
+          - DomainName: !Ref S3BucketWwwName
             Id: redirectOrigin
             CustomOriginConfig:
               OriginProtocolPolicy: match-viewer
+            S3OriginConfig:
+              OriginAccessIdentity:
+                !Join ['', ['origin-access-identity/cloudfront/', !Ref CloudFrontOriginAccessIdentityWww]]
         ViewerCertificate:
           AcmCertificateArn: !Ref 'CertificateArn'
           MinimumProtocolVersion: 'TLSv1.1_2016'
           SslSupportMethod: 'sni-only'
+
+  CloudFrontOriginAccessIdentityWww:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub 'CloudFront OAI for ${SubDomain}.${DomainName}'
               
   # Used by the www cloudfront instance in order to redirect to naked domain.
   RedirectFunction:

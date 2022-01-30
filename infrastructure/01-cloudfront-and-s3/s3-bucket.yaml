@@ -4,11 +4,11 @@ Description: S3 Bucket for cloudfront
 Transform: AWS::Serverless-2016-10-31
 
 Parameters:
-#   SubDomain:
-#     Description: The part of a website address before your DomainName - e.g. www or img
-#     Type: String
-#     Default: www
-#     AllowedPattern: ^[^.]*$
+  SubDomain:
+    Description: The part of a website address before your DomainName - e.g. www or img
+    Type: String
+    Default: www
+    AllowedPattern: ^[^.]*$
   DomainName:
     Description: The part of a website address after your SubDomain - e.g. example.com
     Type: String
@@ -62,6 +62,14 @@ Resources:
       #     - ServerSideEncryptionByDefault:
       #         SSEAlgorithm: AES256
 
+  S3BucketWww:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${SubDomain}.{DomainName}'
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+
   # CopyLayerVersion:
   #   Type: "AWS::Serverless::LayerVersion"
   #   Properties:
@@ -79,6 +87,15 @@ Outputs:
   S3BucketRootArn:
     Description: Website bucket locator
     Value: !GetAtt S3BucketRoot.Arn
+  S3BucketWww:
+    Description: Www website bucket
+    Value: !Ref S3BucketWww
+  S3BucketWwwName:
+    Description: Www website bucket name
+    Value: !GetAtt S3BucketWww.DomainName
+  S3BucketWwwArn:
+    Description: Www website bucket locator
+    Value: !GetAtt S3BucketWww.Arn
   # S3BucketLogs:
   #   Description: Logging bucket
   #   Value: !Ref S3BucketLogs
