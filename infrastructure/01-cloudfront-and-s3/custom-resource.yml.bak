@@ -53,6 +53,15 @@ Resources:
       #   DestinationBucketName: !Ref 'S3BucketLogs'
       #   LogFilePrefix: 'origin/'
 
+  S3BucketWww:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
   # CopyLayerVersion:
   #   Type: "AWS::Serverless::LayerVersion"
   #   Properties:
@@ -73,18 +82,21 @@ Resources:
   #       - Key: Solution
   #         Value: ACFS3
 
-  CloudFrontStack:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL: ./cloudfront-site.yaml
-      Parameters:
-        CertificateArn: !GetAtt AcmCertificateStack.Outputs.CertificateArn
-        DomainName: !Ref DomainName
-        SubDomain: !Ref SubDomain
-        CreateApex: !Ref CreateApex
-        S3BucketRoot: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
-        S3BucketRootName: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
-        S3BucketRootArn: !GetAtt CustomResourceStack.Outputs.S3BucketRootArn
+  # CloudFrontStack:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: ./cloudfront-site.yaml
+  #     Parameters:
+  #       CertificateArn: !GetAtt AcmCertificateStack.Outputs.CertificateArn
+  #       DomainName: !Ref DomainName
+  #       SubDomain: !Ref SubDomain
+  #       CreateApex: !Ref CreateApex
+  #       S3BucketRoot: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
+  #       S3BucketRootName: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
+  #       S3BucketRootArn: !GetAtt CustomResourceStack.Outputs.S3BucketRootArn
+  #       S3BucketWww: !GetAtt CustomResourceStack.Outputs.S3BucketWww
+  #       S3BucketWwwName: !GetAtt CustomResourceStack.Outputs.S3BucketWwwName
+  #       S3BucketWwwArn: !GetAtt CustomResourceStack.Outputs.S3BucketWwwArn
         # S3BucketLogs: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
         # S3BucketLogsName: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
 
@@ -106,6 +118,15 @@ Outputs:
   S3BucketRootName:
     Description: Website bucket name
     Value: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
+  S3BucketRootArn:
+    Description: Website bucket arn
+    Value: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
+  S3BucketWww:
+    Description: Www website bucket
+    Value: !GetAtt CustomResourceStack.Outputs.S3BucketWww
+  S3BucketWwwName:
+    Description: Www website bucket name
+    Value: !GetAtt CustomResourceStack.Outputs.S3BucketWwwName
   CertificateArn:
     Description: Issued certificate
     Value: !GetAtt AcmCertificateStack.Outputs.CertificateArn
