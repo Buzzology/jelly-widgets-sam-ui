@@ -54,6 +54,7 @@ Resources:
             Principal:
               CanonicalUser: !GetAtt CloudFrontOriginAccessIdentity.S3CanonicalUserId
 
+  # This is the main cloudfront distribution for the naked domain.
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -98,7 +99,7 @@ Resources:
           AcmCertificateArn: !Ref 'CertificateArn'
           MinimumProtocolVersion: 'TLSv1.1_2016'
           SslSupportMethod: 'sni-only'
-     
+
   CloudFrontOriginAccessIdentity:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:
@@ -131,6 +132,48 @@ Resources:
           EvaluateTargetHealth: false
           # The  following HosteZoneId is always used for alias records pointing to CF.
           HostedZoneId: 'Z2FDTNDATAQYW2'
+
+  # This is the www cloudfront instance, we just use it to redirect to the naked one. 
+  # https://gist.github.com/mikebroberts/09e8c8b4aaac6e26149c4622fd492414
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultCacheBehavior:
+          TargetOriginId: redirectOrigin
+          ViewerProtocolPolicy: 'redirect-to-https'
+          # "Managed-CachingDisabled" from https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
+          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: !GetAtt RedirectFunction.FunctionMetadata.FunctionARN
+        # CloudFront requires at least one origin, even though we're always going to redirect
+        Origins:
+          - DomainName: !Sub '${SubDomain}.${DomainName}'
+            Id: redirectOrigin
+            CustomOriginConfig:
+              OriginProtocolPolicy: match-viewer
+              
+  # Used by the www cloudfront instance in order to redirect to naked domain.
+  RedirectFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      AutoPublish: true
+      FunctionCode: !Sub |
+        function handler(event) {
+          return {
+            statusCode: 302,
+            statusDescription: 'Found',
+            headers: {
+              location: { value: 'https://${DomainName}/' }
+            }
+          }
+        }
+      FunctionConfig:
+        Comment: !Sub 'Redirect from ${SubDomain}.${DomainName} to ${DomainName}'
+        Runtime: cloudfront-js-1.0
+      Name: !Sub "${AWS::StackName}-redirectFunction"
 
   # ResponseHeadersPolicy:
   #   Type: AWS::CloudFront::ResponseHeadersPolicy
