@@ -1,7 +1,6 @@
 # 
 # Create stack: `aws cloudformation create-stack --stack-name acm-certificate-00 --region us-east-1 --on-failure DELETE --template-body file://./main.yml --parameters file://./parameters.json --capabilities CAPABILITY_AUTO_EXPAND`
 
-
 AWSTemplateFormatVersion: '2010-09-09'
 Description: CloudFront with Header Security and site content
 Transform: 'AWS::Serverless-2016-10-31'
@@ -16,15 +15,9 @@ Parameters:
   SubDomain:
     Description: Subdomain
     Type: String
-  # S3BucketLogs:
-  #   Description: Logging Bucket
-  #   Type: String
   S3BucketRoot:
     Description: Content Bucket
     Type: String
-  # S3BucketLogsName:
-  #   Description: Logging Bucket
-  #   Type: String
   S3BucketRootName:
     Description: Content Bucket
     Type: String
@@ -69,8 +62,6 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
-          # - !Sub '${SubDomain}.${DomainName}'
-          # - !If [ CreateApexConfig, !Ref DomainName, !Ref 'AWS::NoValue' ]
           - !Ref DomainName
         DefaultCacheBehavior:
           Compress: true
@@ -80,7 +71,6 @@ Resources:
           MaxTTL: 31536000
           TargetOriginId: !Sub 'S3-${AWS::StackName}-root'
           ViewerProtocolPolicy: 'redirect-to-https'
-          # ResponseHeadersPolicyId: !Ref ResponseHeadersPolicy
         CustomErrorResponses:
           - ErrorCachingMinTTL: 60
             ErrorCode: 404
@@ -94,10 +84,6 @@ Resources:
         HttpVersion: 'http2'
         DefaultRootObject: 'index.html'
         IPV6Enabled: true
-        # Logging:
-        #   Bucket: !Ref 'S3BucketLogsName'
-        #   IncludeCookies: false
-        #   Prefix: 'cdn/'
         Origins:
           - DomainName: !Ref S3BucketRootName
             Id: !Sub 'S3-${AWS::StackName}-root'
@@ -138,8 +124,6 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
-          # - !Sub '${SubDomain}.${DomainName}'
-          # - !If [ CreateApexConfig, !Ref DomainName, !Ref 'AWS::NoValue' ]
           - !Sub '${SubDomain}.${DomainName}'
         Enabled: true
         DefaultCacheBehavior:
@@ -154,8 +138,6 @@ Resources:
         Origins:
           - DomainName: !Ref S3BucketWwwName
             Id: redirectOrigin
-            # CustomOriginConfig:
-            #   OriginProtocolPolicy: match-viewer
             S3OriginConfig:
               OriginAccessIdentity:
                 !Join ['', ['origin-access-identity/cloudfront/', !Ref CloudFrontOriginAccessIdentityWww]]
@@ -203,33 +185,6 @@ Resources:
           EvaluateTargetHealth: false
           # The following HosteZoneId is always used for alias records pointing to CF.
           HostedZoneId: 'Z2FDTNDATAQYW2'
-
-  # ResponseHeadersPolicy:
-  #   Type: AWS::CloudFront::ResponseHeadersPolicy
-  #   Properties: 
-  #     ResponseHeadersPolicyConfig: 
-  #       Name: !Sub "${AWS::StackName}-static-site-security-headers"
-  #       SecurityHeadersConfig: 
-  #         StrictTransportSecurity: 
-  #           AccessControlMaxAgeSec: 63072000
-  #           IncludeSubdomains: true
-  #           Override: true
-  #           Preload: true
-  #         ContentSecurityPolicy: 
-  #           ContentSecurityPolicy: "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
-  #           Override: true
-  #         ContentTypeOptions: 
-  #           Override: true
-  #         FrameOptions:
-  #           FrameOption: DENY
-  #           Override: true
-  #         ReferrerPolicy: 
-  #           ReferrerPolicy: "same-origin"
-  #           Override: true
-  #         XSSProtection: 
-  #           ModeBlock: true
-  #           Override: true
-  #           Protection: true
 
 Outputs:
   CloudFrontDistribution:

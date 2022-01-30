@@ -12,43 +12,8 @@ Parameters:
   DomainName:
     Description: The part of a website address after your SubDomain - e.g. example.com
     Type: String
-#   HostedZoneId:
-#     Description: HostedZoneId for the domain e.g. Z23ABC4XYZL05B
-#     Type: String
-#   CreateApex:
-#     Description: Create an Apex Alias in CloudFront distribution - yes/no
-#     Type: String
-#     Default: 'no'
-#     AllowedValues: ['yes','no']
 
 Resources:
-
-  # CopyCustomResource:
-  #   Type: "AWS::CloudFormation::CustomResource"
-  #   Properties:
-  #     ServiceToken: !GetAtt CopyFunction.Arn
-
-  # S3BucketLogs:
-  #   Type: AWS::S3::Bucket
-  #   DeletionPolicy: Retain
-  #   Properties:
-  #     AccessControl: LogDeliveryWrite
-  #     BucketEncryption:
-  #       ServerSideEncryptionConfiguration:
-  #         - ServerSideEncryptionByDefault:
-  #             SSEAlgorithm: AES256
-
-  # S3BucketRoot:
-  #   Type: AWS::S3::Bucket
-  #   DeletionPolicy: Retain
-  #   Properties:
-  #     BucketEncryption:
-  #       ServerSideEncryptionConfiguration:
-  #         - ServerSideEncryptionByDefault:
-  #             SSEAlgorithm: AES256
-  #     # LoggingConfiguration:
-  #     #   DestinationBucketName: !Ref 'S3BucketLogs'
-  #     #   LogFilePrefix: 'origin/'
 
   S3BucketRoot:
     Type: AWS::S3::Bucket
@@ -57,10 +22,6 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
-      # BucketEncryption:
-      #   ServerSideEncryptionConfiguration:
-      #     - ServerSideEncryptionByDefault:
-      #         SSEAlgorithm: AES256
 
   S3BucketWww:
     Type: AWS::S3::Bucket
@@ -69,13 +30,6 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
-
-  # CopyLayerVersion:
-  #   Type: "AWS::Serverless::LayerVersion"
-  #   Properties:
-  #     ContentUri: ../witch.zip
-  #     CompatibleRuntimes:
-  #       - nodejs12.x
 
 Outputs:
   S3BucketRoot:
@@ -96,12 +50,4 @@ Outputs:
   S3BucketWwwArn:
     Description: Www website bucket locator
     Value: !GetAtt S3BucketWww.Arn
-  # S3BucketLogs:
-  #   Description: Logging bucket
-  #   Value: !Ref S3BucketLogs
-  # S3BucketLogsName:
-  #   Description: Logging bucket Name
-  #   Value: !GetAtt S3BucketLogs.DomainName
-  # CopyFunction:
-  #   Description: S3 helper function
-  #   Value: !GetAtt CopyFunction.Arn
+    
