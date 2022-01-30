@@ -69,7 +69,7 @@ Resources:
           MaxTTL: 31536000
           TargetOriginId: !Sub 'S3-${AWS::StackName}-root'
           ViewerProtocolPolicy: 'redirect-to-https'
-          ResponseHeadersPolicyId: !Ref ResponseHeadersPolicy
+          # ResponseHeadersPolicyId: !Ref ResponseHeadersPolicy
         CustomErrorResponses:
           - ErrorCachingMinTTL: 60
             ErrorCode: 404
@@ -132,32 +132,32 @@ Resources:
           # The  following HosteZoneId is always used for alias records pointing to CF.
           HostedZoneId: 'Z2FDTNDATAQYW2'
 
-  ResponseHeadersPolicy:
-    Type: AWS::CloudFront::ResponseHeadersPolicy
-    Properties: 
-      ResponseHeadersPolicyConfig: 
-        Name: !Sub "${AWS::StackName}-static-site-security-headers"
-        SecurityHeadersConfig: 
-          StrictTransportSecurity: 
-            AccessControlMaxAgeSec: 63072000
-            IncludeSubdomains: true
-            Override: true
-            Preload: true
-          ContentSecurityPolicy: 
-            ContentSecurityPolicy: "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
-            Override: true
-          ContentTypeOptions: 
-            Override: true
-          FrameOptions:
-            FrameOption: DENY
-            Override: true
-          ReferrerPolicy: 
-            ReferrerPolicy: "same-origin"
-            Override: true
-          XSSProtection: 
-            ModeBlock: true
-            Override: true
-            Protection: true
+  # ResponseHeadersPolicy:
+  #   Type: AWS::CloudFront::ResponseHeadersPolicy
+  #   Properties: 
+  #     ResponseHeadersPolicyConfig: 
+  #       Name: !Sub "${AWS::StackName}-static-site-security-headers"
+  #       SecurityHeadersConfig: 
+  #         StrictTransportSecurity: 
+  #           AccessControlMaxAgeSec: 63072000
+  #           IncludeSubdomains: true
+  #           Override: true
+  #           Preload: true
+  #         ContentSecurityPolicy: 
+  #           ContentSecurityPolicy: "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+  #           Override: true
+  #         ContentTypeOptions: 
+  #           Override: true
+  #         FrameOptions:
+  #           FrameOption: DENY
+  #           Override: true
+  #         ReferrerPolicy: 
+  #           ReferrerPolicy: "same-origin"
+  #           Override: true
+  #         XSSProtection: 
+  #           ModeBlock: true
+  #           Override: true
+  #           Protection: true
 
 Outputs:
   CloudFrontDistribution:
