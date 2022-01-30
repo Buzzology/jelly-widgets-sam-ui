@@ -107,19 +107,7 @@ Resources:
       CloudFrontOriginAccessIdentityConfig:
         Comment: !Sub 'CloudFront OAI for ${SubDomain}.${DomainName}'
 
-  Route53RecordSetGroup:
-    Type: AWS::Route53::RecordSetGroup
-    Properties:
-      HostedZoneName: !Sub '${DomainName}.'
-      RecordSets:
-      - Name: !Sub '${SubDomain}.${DomainName}'
-        Type: 'A'
-        AliasTarget:
-          DNSName: !GetAtt 'CloudFrontDistribution.DomainName'
-          EvaluateTargetHealth: false
-          # The following HosteZoneId is always used for alias records pointing to CF.
-          HostedZoneId: 'Z2FDTNDATAQYW2'
-
+  # Setup a dns entry for the apex/naked domain in Route53.
   ApexRoute53RecordSetGroup:
     Condition: CreateApexConfig
     Type: AWS::Route53::RecordSetGroup
@@ -175,6 +163,20 @@ Resources:
         Comment: !Sub 'Redirect from ${SubDomain}.${DomainName} to ${DomainName}'
         Runtime: cloudfront-js-1.0
       Name: !Sub "${AWS::StackName}-redirectFun"
+
+  # Setup the sub-domain (www) to point to the redirect cloudfront distro.
+  Route53RecordSetGroup:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub '${DomainName}.'
+      RecordSets:
+      - Name: !Sub '${SubDomain}.${DomainName}'
+        Type: 'A'
+        AliasTarget:
+          DNSName: !GetAtt 'RedirectCloudFrontDistribution.DomainName'
+          EvaluateTargetHealth: false
+          # The following HosteZoneId is always used for alias records pointing to CF.
+          HostedZoneId: 'Z2FDTNDATAQYW2'
 
   # ResponseHeadersPolicy:
   #   Type: AWS::CloudFront::ResponseHeadersPolicy
