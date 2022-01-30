@@ -17,7 +17,7 @@
 #     --capabilities CAPABILITY_AUTO_EXPAND
 #
 # View deployment events:
-# Step 4) aws cloudformation describe-stack-events --stack-name cloudfront-and-s3-01
+# Step 4) aws cloudformation describe-stack-events --stack-name cloudfront-and-s3-01 --output yaml
 #
 AWSTemplateFormatVersion: 2010-09-09
 Description: TesterWidgets set for https site and cloudfront ditribution.
