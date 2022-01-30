@@ -1,9 +1,12 @@
 import React from 'react';
 import ContactForm from '../../components/contact/ContactForm';
 import LayoutDefault from '../../layouts/LayoutDefault';
+import { useDocTitle } from '../../routes/Hooks';
 
 
 export default function ViewAustralianCompanyNumberGenerator() {
+    useDocTitle("Contact Us - Send a message to TesterWidgets.com");
+
     return (
         <LayoutDefault loading={false}>
             <div className="grid grid-cols-12">

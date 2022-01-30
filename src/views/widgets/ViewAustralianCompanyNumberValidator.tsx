@@ -2,10 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AustralianCompanyNumberValidator from '../../components/widgets/AustralianCompanyNumberValidator';
 import LayoutWidget from '../../layouts/layoutWidget/LayoutWidget';
+import { useDocTitle } from '../../routes/Hooks';
 import { GetAcnGeneratorLink } from '../../routes/RouteLinkHelpers';
 
 
 export default function ViewAustralianCompanyNumberValidator() {
+    useDocTitle("Australian Company Number (ACN) Validator");
+
     return (
         <LayoutWidget
             loading={false}

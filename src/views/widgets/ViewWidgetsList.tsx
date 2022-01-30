@@ -5,10 +5,13 @@ import AustralianCompanyNumberValidator from '../../components/widgets/Australia
 import WidgetSkeletonLoader from '../../components/widgets/WidgetSkeletonLoader';
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
+import { useDocTitle } from '../../routes/Hooks';
 import { GetAcnGeneratorLink, GetAcnValidatorLink } from '../../routes/RouteLinkHelpers';
 
 
 export default function ViewWidgetsList() {
+    useDocTitle("Generators and Validators");
+
     return (
         <LayoutDefault
             loading={false}
