@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { EnumWidgetId } from './@types/Widget';
 import ScrollToTop from './routes/RoutesScrollToTop';
 import ViewContact from './views/generic/ViewContact';
@@ -7,9 +7,15 @@ import ViewHome from './views/generic/ViewHome';
 import ViewAustralianCompanyNumberGenerator from './views/widgets/ViewAustralianCompanyNumberGenerator';
 import ViewAustralianCompanyNumberValidator from './views/widgets/ViewAustralianCompanyNumberValidator';
 import ViewWidgetsList from './views/widgets/ViewWidgetsList';
-
+import ReactGA from 'react-ga';
 
 function App() {
+  const location = useLocation();
+
+  React.useEffect(() => {
+    ReactGA.pageview(location.pathname);
+  }, [location]);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
