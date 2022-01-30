@@ -150,8 +150,8 @@ Resources:
         Origins:
           - DomainName: !Ref S3BucketWwwName
             Id: redirectOrigin
-            CustomOriginConfig:
-              OriginProtocolPolicy: match-viewer
+            # CustomOriginConfig:
+            #   OriginProtocolPolicy: match-viewer
             S3OriginConfig:
               OriginAccessIdentity:
                 !Join ['', ['origin-access-identity/cloudfront/', !Ref CloudFrontOriginAccessIdentityWww]]
