@@ -5,11 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store/root';
-import ReactGA from 'react-ga';
-
-ReactGA.initialize('G-FEE62SDTH9');
-
-ReactGA.pageview('/index');
 
 ReactDOM.render(
   <React.StrictMode>
