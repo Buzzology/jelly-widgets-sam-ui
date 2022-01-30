@@ -65,7 +65,7 @@ Resources:
   S3BucketWww:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub '${SubDomain}.{DomainName}'
+      BucketName: !Sub '${SubDomain}.${DomainName}'
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
