@@ -8,7 +8,7 @@ import WidgetSkeletonLoader from '../../components/widgets/WidgetSkeletonLoader'
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
 import { useDocTitle } from '../../routes/Hooks';
-import { GetAcnGeneratorLink, GetAcnValidatorLink } from '../../routes/RouteLinkHelpers';
+import { GetAcnGeneratorLink, GetAcnValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
 
 
 export default function ViewWidgetsList() {
@@ -81,13 +81,13 @@ export default function ViewWidgetsList() {
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Tax File Number Validator</h2>
-                            The Australian Tax File Number (TFN) validator will be ready by the 22nd February 2022.
+                            The Australian Tax File Number (TFN) validator is now available. <Link to={GetTfnValidatorLink()} className="text-link">Click here to validate your TFN.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Tax File Number Generator</h2>
-                            The Australian Tax File Number generator we've built on <a className="text-link" href="https://whatibroke.com/2013/07/24/tfn-generator" target="_blank" rel="no-referrer">whatibroke</a>
-                            &nbsp;will be ported over at the same time as the TFN validator (22nd February 2022).
+                            The Australian Tax File Number generator we built on <a className="text-link" href="https://whatibroke.com/2013/07/24/tfn-generator" target="_blank" rel="no-referrer">whatibroke</a>
+                            &nbsp;was ported over at the same time as the TFN validator. <Link to={GetTfnGeneratorLink()} className="text-link">Click here to generate a TFN.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
