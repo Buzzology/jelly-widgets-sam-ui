@@ -28,7 +28,7 @@ function getAdditionalInfoNodes(batchItem?: WidgetExecuteBatchResponseItem) {
                     <span className="font-bold text-green-500">{batchItem.data?.tfn}</span> is a valid Australian Tax File Number.
                 </p>
                 <p className="pb-3">
-                    The last number ({batchItem.data?.checkDigit}) is used as a check digit to ensure that the TFN is valid.
+                    The last number ({batchItem?.data?.tfn?.slice(-1)}) is used as a check digit to ensure that the TFN is valid.
                 </p>
             </div>
         );
