@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AustralianCompanyNumberGenerator from '../../components/widgets/AustralianCompanyNumberGenerator';
 import AustralianCompanyNumberValidator from '../../components/widgets/AustralianCompanyNumberValidator';
+import AustralianTaxFileNumberGenerator from '../../components/widgets/AustralianTaxFileNumberGenerator';
+import AustralianTaxFileNumberValidator from '../../components/widgets/AustralianTaxFileNumberValidator';
 import WidgetSkeletonLoader from '../../components/widgets/WidgetSkeletonLoader';
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
@@ -47,12 +49,10 @@ export default function ViewWidgetsList() {
                             &nbsp;<Link to={GetAcnValidatorLink()} className="text-link">Click here to learn more.</Link>
                         </div>
 
-                        {/* HERE */}
-
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Generator</h2>
                             The next tool on our roadmap is an Australian Medicare Number generator. This will be
-                            released on the 31st January 2022.
+                            released on the 14th February 2022.
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
@@ -77,7 +77,7 @@ export default function ViewWidgetsList() {
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <AustralianTaxFileNumberValidator />
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Tax File Number Validator</h2>
@@ -91,7 +91,7 @@ export default function ViewWidgetsList() {
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <AustralianTaxFileNumberGenerator />
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
