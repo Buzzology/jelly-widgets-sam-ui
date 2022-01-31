@@ -6,6 +6,8 @@ import ViewContact from './views/generic/ViewContact';
 import ViewHome from './views/generic/ViewHome';
 import ViewAustralianCompanyNumberGenerator from './views/widgets/ViewAustralianCompanyNumberGenerator';
 import ViewAustralianCompanyNumberValidator from './views/widgets/ViewAustralianCompanyNumberValidator';
+import ViewAustralianTaxFileNumberGenerator from './views/widgets/ViewAustralianTaxFileNumberGenerator';
+import ViewAustralianTaxFileNumberValidator from './views/widgets/ViewAustralianTaxFileNumberValidator';
 import ViewWidgetsList from './views/widgets/ViewWidgetsList';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
             <Route path="widgets">
               <Route path={`${EnumWidgetId.AUSTRALIAN_COMPANY_NUMBER_GENERATOR}/*`} element={<ViewAustralianCompanyNumberGenerator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_COMPANY_NUMBER_VALIDATOR}/*`} element={<ViewAustralianCompanyNumberValidator />} />
+              <Route path={`${EnumWidgetId.AUSTRALIAN_TAX_FILE_NUMBER_GENERATOR}/*`} element={<ViewAustralianTaxFileNumberGenerator />} />
+              <Route path={`${EnumWidgetId.AUSTRALIAN_TAX_FILE_NUMBER_VALIDATOR}/*`} element={<ViewAustralianTaxFileNumberValidator />} />
               <Route path={``} element={<ViewWidgetsList />} />
               {/* <Route path="new" element={<NewTeamForm />} />
           <Route index element={<LeagueStandings />} /> */}
