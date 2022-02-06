@@ -4,11 +4,13 @@ import AustralianCompanyNumberGenerator from '../../components/widgets/Australia
 import AustralianCompanyNumberValidator from '../../components/widgets/AustralianCompanyNumberValidator';
 import AustralianTaxFileNumberGenerator from '../../components/widgets/AustralianTaxFileNumberGenerator';
 import AustralianTaxFileNumberValidator from '../../components/widgets/AustralianTaxFileNumberValidator';
+import NewZealandIRDGenerator from '../../components/widgets/NewZealandIRDGenerator';
+import NewZealandIRDValidator from '../../components/widgets/NewZealandIRDValidator';
 import WidgetSkeletonLoader from '../../components/widgets/WidgetSkeletonLoader';
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
 import { useDocTitle } from '../../routes/Hooks';
-import { GetAcnGeneratorLink, GetAcnValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
+import { GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
 
 
 export default function ViewWidgetsList() {
@@ -52,7 +54,7 @@ export default function ViewWidgetsList() {
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Generator</h2>
                             The next tool on our roadmap is an Australian Medicare Number generator. This will be
-                            released on the 14th February 2022.
+                            released on the 21st February 2022.
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
@@ -64,12 +66,12 @@ export default function ViewWidgetsList() {
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Business Number Validator</h2>
-                            An Australian Business Number (ABN) validator will be built by the 8th February 2022.
+                            An Australian Business Number (ABN) validator will be built by the 28th February 2022.
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Business Number Generator</h2>
-                            An Australian Business Number (ABN) generator will be built by the 15th February 2022.
+                            An Australian Business Number (ABN) generator will be built by the 28th February 2022.
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
@@ -86,7 +88,7 @@ export default function ViewWidgetsList() {
 
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Tax File Number Generator</h2>
-                            The Australian Tax File Number generator we built on <a className="text-link" href="https://whatibroke.com/2013/07/24/tfn-generator" target="_blank" rel="no-referrer">whatibroke</a>
+                            The Australian Tax File Number generator we built on <a className="text-link" href="https://whatibroke.com/2013/07/24/tfn-generator" target="_blank" rel="noreferrer">whatibroke</a>
                             &nbsp;was ported over at the same time as the TFN validator. <Link to={GetTfnGeneratorLink()} className="text-link">Click here to generate a TFN.</Link>
                         </div>
 
@@ -95,19 +97,21 @@ export default function ViewWidgetsList() {
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <NewZealandIRDValidator />
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">New Zealand IRD Validator</h2>
-                            We've been getting requests for this one for quite some time. We will have it ready by the 1st March.
+                            The New Zealand Internal Revenue Department (IRD) number validator is now available. <Link to={GetIrdValidatorLink()} className="text-link">Click
+                            here to validate your IRD number.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">New Zealand IRD Generator</h2>
-                            The IRD generator will be created at the same time as the validator and be ready to be used on the 1st March.
+                            The New Zealand Internal Revenue Department (IRD) number generator is now available. <Link to={GetIrdGeneratorLink()} className="text-link">Click
+                            here to generate a test IRD number.</Link>
                         </div>
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <NewZealandIRDGenerator />
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
