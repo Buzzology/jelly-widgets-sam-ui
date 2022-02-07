@@ -119,7 +119,7 @@ export default function ViewWidgetsList() {
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Validator</h2>
-                            We'll have finished the Australian Medicare Number validator and have it delivered
+                            We'll have finished the Australian Medicare Number validator and delivered
                             by the 8th March.
                         </div>
                     </div>
