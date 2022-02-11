@@ -33,7 +33,7 @@ export default function Header() {
             <div className="container py-6 max-w-lg">
                 <h1 className="text-center text-lg font-bold lg:text-2xl">
                     Join the feed to get the latest on <br />
-                    widgest, updates and news.
+                    widgets, updates and news.
                 </h1>
 
                 <div className="flex justify-center mt-6">
