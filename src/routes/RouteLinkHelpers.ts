@@ -11,3 +11,5 @@ export const GetTfnValidatorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_TAX
 export const GetTfnGeneratorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_TAX_FILE_NUMBER_GENERATOR}/australian-tax-file-number-generator`;
 export const GetIrdGeneratorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_IRD_GENERATOR}/new-zealand-ird-number-generator`;
 export const GetIrdValidatorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_IRD_VALIDATOR}/new-zealand-ird-number-validator`;
+export const GetAbnValidatorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_VALIDATOR}/australian-business-number-validator`;
+export const GetAbnGeneratorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_GENERATOR}/australian-business-number-generator`;
