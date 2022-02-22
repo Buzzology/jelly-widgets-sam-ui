@@ -129,7 +129,7 @@ export default function ViewAustralianCompanyNumberGenerator() {
                     <HomeContentRow
                         imagePath="/img/contact-us.jpg"
                         title="Request Tools"
-                        text="Looking for a widgets or features that we don't have yet? Let us know and we'll see if we can build it for you!"
+                        text="Looking for widgets or features that we don't have yet? Let us know and we'll see if we can build them for you!"
                         buttonText="Contact"
                         link="/contact"
                     />
