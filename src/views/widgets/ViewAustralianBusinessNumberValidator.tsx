@@ -21,7 +21,7 @@ export default function ViewAustralianBusinessNumberValidator() {
             <div className="grid gap-y-10 md:gap-y-40  md:gap-x-20 grid-cols-12">
                 <div className="col-span-12 md:col-span-7">
                     <h2 className="text-3xl pb-4">Australian Business Number Validator</h2>
-                    The Australian Business Number (ABN) is a unique nine digit identifier issued to each business. They
+                    The Australian Business Number (ABN) is a unique eleven digit identifier issued to each business. They
                     often appear on letterheads and emails and other formal documents sent from the business.
                 </div>
 
@@ -39,11 +39,11 @@ export default function ViewAustralianBusinessNumberValidator() {
                     <h3 className="text-2xl pb-4">Sample invalid Australian Business Numbers</h3>
                     Here are five invalid Australian Business Numbers that can be used for testing:
                     <ul className="pl-8 pt-4 list-disc">
-                        <li>344655339</li>
+                        <li>34465533916</li>
                         <li>655339</li>
-                        <li>123452367</li>
-                        <li>4233452367</li>
-                        <li>123456789</li>
+                        <li>12345236711</li>
+                        <li>42334523677</li>
+                        <li>12345678911</li>
                     </ul>
                 </div>
 

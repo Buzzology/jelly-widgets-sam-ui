@@ -21,7 +21,7 @@ export default function ViewAustralianBusinessNumberGenerator() {
             <div className="grid gap-y-10 md:gap-y-40  md:gap-x-20 grid-cols-12">
                 <div className="col-span-12 md:col-span-7">
                     <h2 className="text-3xl pb-4">Australian Business Number Generator</h2>
-                    The Australian Business Number (ABN) is a unique nine digit identifier issued to each business. They
+                    The Australian Business Number (ABN) is a unique eleven digit identifier issued to each business. They
                     often appear on letterheads and emails and other formal documents sent from the business.
                 </div>
 
