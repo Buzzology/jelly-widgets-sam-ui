@@ -54,7 +54,7 @@ export default function ViewWidgetsList() {
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Generator</h2>
                             The next tool on our roadmap is an Australian Medicare Number generator. This will be
-                            released on the 21st February 2022.
+                            released soon.
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
@@ -66,12 +66,12 @@ export default function ViewWidgetsList() {
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Business Number Validator</h2>
-                            An Australian Business Number (ABN) validator will be built by the 28th February 2022.
+                            An Australian Business Number (ABN) validator will be built soon.
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Business Number Generator</h2>
-                            An Australian Business Number (ABN) generator will be built by the 28th February 2022.
+                            An Australian Business Number (ABN) generator will be built soon.
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
