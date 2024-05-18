@@ -6,13 +6,14 @@ import AustralianTaxFileNumberGenerator from '../../components/widgets/Australia
 import AustralianTaxFileNumberValidator from '../../components/widgets/AustralianTaxFileNumberValidator';
 import NewZealandIRDGenerator from '../../components/widgets/NewZealandIRDGenerator';
 import NewZealandIRDValidator from '../../components/widgets/NewZealandIRDValidator';
-import WidgetSkeletonLoader from '../../components/widgets/WidgetSkeletonLoader';
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
 import { useDocTitle } from '../../routes/Hooks';
-import { GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
+import { GetAbnValidatorLink, GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetMedicareGeneratorLink, GetMedicareValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
 import AustralianMedicareNumberValidator from '../../components/widgets/AustralianMedicareNumberValidator';
 import AustralianMedicareNumberGenerator from '../../components/widgets/AustralianMedicareNumberGenerator';
+import AustralianBusinessNumberGenerator from '../../components/widgets/AustralianBusinessNumberGenerator';
+import AustralianBusinessNumberValidator from '../../components/widgets/AustralianBusinessNumberValidator';
 
 
 export default function ViewWidgetsList() {
@@ -56,7 +57,7 @@ export default function ViewWidgetsList() {
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Generator</h2>
                             This tool was released on the 18th May 2024. It can be used to generate valid Australian Medicare Numbers.&nbsp;
-                            <Link to="/widgets/medicare-number-generator" className="text-link">Click here to generate a Medicare Number.</Link>
+                            <Link to={GetMedicareGeneratorLink()} className="text-link">Click here to generate a Medicare Number.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
@@ -64,20 +65,22 @@ export default function ViewWidgetsList() {
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <AustralianBusinessNumberValidator />
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Business Number Validator</h2>
-                            An Australian Business Number (ABN) validator will be built soon.
+                            This is another tool released in May 2024. It can be used to validate Australian Business Numbers (ABNs).&nbsp;
+                            <Link to={GetAbnValidatorLink()} className="text-link">Click here to validate an ABN.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Business Number Generator</h2>
-                            An Australian Business Number (ABN) generator will be built soon.
+                            An Australian Business Number (ABN) generator that can be used or creating test or sample ABNs.&nbsp;
+                            <Link to={GetAbnValidatorLink()} className="text-link">Click here to generate an ABN.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <AustralianBusinessNumberGenerator />
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
@@ -122,7 +125,7 @@ export default function ViewWidgetsList() {
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Validator</h2>
                             The Australian Medicare Number validator can be used to check if an Australian Medicare Number is valid.&nbsp;
-                            <Link to="/widgets/medicare-number-validator" className="text-link">Click here to validate a Medicare Number.</Link>
+                            <Link to={GetMedicareValidatorLink()} className="text-link">Click here to validate a Medicare Number.</Link>
                         </div>
                     </div>
                 </div>
