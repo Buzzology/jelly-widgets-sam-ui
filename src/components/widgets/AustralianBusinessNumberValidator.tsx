@@ -25,10 +25,10 @@ function getAdditionalInfoNodes(batchItem?: WidgetExecuteBatchResponseItem) {
         return (
             <div className="text-gray-500 text-sm">
                 <p className="pb-3">
-                    <span className="font-bold text-green-500">{batchItem.data?.acn}</span> is a valid Australian Business Number.
+                    <span className="font-bold text-green-500">{batchItem.data?.abn}</span> is a valid Australian Business Number.
                 </p>
                 <p className="pb-3">
-                    The last number ({batchItem.data?.checkDigit}) is used as a check digit to ensure that the ABN is valid.
+                    The first two numbers ({batchItem.data?.checkDigit}) are used as a check digits to ensure that the ABN is valid.
                 </p>
             </div>
         );

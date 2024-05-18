@@ -8,11 +8,11 @@ export default function AustralianBusinessNumberGenerator() {
         <WidgetGenerator
             widgetId={EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_GENERATOR}
             labelText="Australian Business Number"
-            getGeneratedValue={(batchItem) => batchItem?.data?.acn}
+            getGeneratedValue={(batchItem) => batchItem?.data?.abn}
             getAdditionalInfoNodes={(batchItem) => (
                 batchItem ? (
                     <div className="text-gray-500 text-sm">
-                        The last number ({batchItem.data?.checkDigit}) is used as a check digit to ensure that the ABN is valid.
+                        The first two numbers ({batchItem.data?.checkDigit}) are used as check digits to ensure that the ABN is valid.
                     </div>
                 ) : null
             )}
