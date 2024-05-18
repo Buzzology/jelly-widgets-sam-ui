@@ -12,6 +12,8 @@ import ViewAustralianTaxFileNumberGenerator from './views/widgets/ViewAustralian
 import ViewAustralianTaxFileNumberValidator from './views/widgets/ViewAustralianTaxFileNumberValidator';
 import ViewNewZealandIRDGenerator from './views/widgets/ViewNewZealandIRDGenerator';
 import ViewNewZealandIRDValidator from './views/widgets/ViewNewZealandIRDValidator';
+import ViewAustralianMedicareNumberGenerator from './views/widgets/ViewAustralianMedicareNumberGenerator';
+import ViewAustralianMedicareNumberValidator from './views/widgets/ViewAustralianMedicareNumberValidator';
 import ViewWidgetsList from './views/widgets/ViewWidgetsList';
 
 function App() {
@@ -31,16 +33,14 @@ function App() {
               <Route path={`${EnumWidgetId.NEW_ZEALAND_IRD_VALIDATOR}/*`} element={<ViewNewZealandIRDValidator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_GENERATOR}/*`} element={<ViewAustralianBusinessNumberGenerator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_VALIDATOR}/*`} element={<ViewAustralianBusinessNumberValidator />} />
+              <Route path={`${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_GENERATOR}/*`} element={<ViewAustralianMedicareNumberGenerator />} />
+              <Route path={`${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_VALIDATOR}/*`} element={<ViewAustralianMedicareNumberValidator />} />
               <Route path={``} element={<ViewWidgetsList />} />
-              {/* <Route path="new" element={<NewTeamForm />} />
-          <Route index element={<LeagueStandings />} /> */}
             </Route>
           </Route>
         </Routes>
     </BrowserRouter>
   );
 }
-
-
 
 export default App;

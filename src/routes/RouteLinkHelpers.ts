@@ -13,3 +13,5 @@ export const GetIrdGeneratorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_IR
 export const GetIrdValidatorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_IRD_VALIDATOR}/new-zealand-ird-number-validator`;
 export const GetAbnValidatorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_VALIDATOR}/australian-business-number-validator`;
 export const GetAbnGeneratorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_GENERATOR}/australian-business-number-generator`;
+export const GetMedicareValidatorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_VALIDATOR}/australian-medicare-number-validator`;
+export const GetMedicareGeneratorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_GENERATOR}/australian-medicare-number-generator`;

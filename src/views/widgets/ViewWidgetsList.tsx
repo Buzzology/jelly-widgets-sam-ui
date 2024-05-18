@@ -11,6 +11,8 @@ import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
 import { useDocTitle } from '../../routes/Hooks';
 import { GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
+import AustralianMedicareNumberValidator from '../../components/widgets/AustralianMedicareNumberValidator';
+import AustralianMedicareNumberGenerator from '../../components/widgets/AustralianMedicareNumberGenerator';
 
 
 export default function ViewWidgetsList() {
@@ -53,12 +55,12 @@ export default function ViewWidgetsList() {
 
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Generator</h2>
-                            The next tool on our roadmap is an Australian Medicare Number generator. This will be
-                            released soon.
+                            This tool was released on the 18th May 2024. It can be used to generate valid Australian Medicare Numbers.&nbsp;
+                            <Link to="/widgets/medicare-number-generator" className="text-link">Click here to generate a Medicare Number.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <AustralianMedicareNumberGenerator />
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
@@ -115,12 +117,12 @@ export default function ViewWidgetsList() {
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
-                            <WidgetSkeletonLoader />
+                            <AustralianMedicareNumberValidator />
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Medicare Number Validator</h2>
-                            We'll have finished the Australian Medicare Number validator and delivered
-                            by the 8th March.
+                            The Australian Medicare Number validator can be used to check if an Australian Medicare Number is valid.&nbsp;
+                            <Link to="/widgets/medicare-number-validator" className="text-link">Click here to validate a Medicare Number.</Link>
                         </div>
                     </div>
                 </div>
