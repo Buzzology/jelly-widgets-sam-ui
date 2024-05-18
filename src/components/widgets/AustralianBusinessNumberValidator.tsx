@@ -10,7 +10,7 @@ export default function AustralianBusinessNumberValidator() {
         <WidgetValidator
             widgetId={EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_VALIDATOR}
             labelText="Australian Business Number"
-            prepareExecutePayload={(value) => ({ acn: value })}
+            prepareExecutePayload={(value) => ({ abn: value })}
             getAdditionalInfoNodes={getAdditionalInfoNodes}
         />
     )
