@@ -9,7 +9,7 @@ import NewZealandIRDValidator from '../../components/widgets/NewZealandIRDValida
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
 import { useDocTitle } from '../../routes/Hooks';
-import { GetAbnValidatorLink, GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetMedicareGeneratorLink, GetMedicareValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
+import { GetAbnGeneratorLink, GetAbnValidatorLink, GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetMedicareGeneratorLink, GetMedicareValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
 import AustralianMedicareNumberValidator from '../../components/widgets/AustralianMedicareNumberValidator';
 import AustralianMedicareNumberGenerator from '../../components/widgets/AustralianMedicareNumberGenerator';
 import AustralianBusinessNumberGenerator from '../../components/widgets/AustralianBusinessNumberGenerator';
@@ -76,7 +76,7 @@ export default function ViewWidgetsList() {
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Business Number Generator</h2>
                             An Australian Business Number (ABN) generator that can be used or creating test or sample ABNs.&nbsp;
-                            <Link to={GetAbnValidatorLink()} className="text-link">Click here to generate an ABN.</Link>
+                            <Link to={GetAbnGeneratorLink()} className="text-link">Click here to generate an ABN.</Link>
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
