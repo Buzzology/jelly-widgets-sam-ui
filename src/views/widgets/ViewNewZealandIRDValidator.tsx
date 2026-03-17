@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import NewZealandIRDValidator from '../../components/widgets/NewZealandIRDValidator';
 import LayoutWidget from '../../layouts/layoutWidget/LayoutWidget';
 import { useDocTitle } from '../../routes/Hooks';
-import { GetIrdGeneratorLink } from '../../routes/RouteLinkHelpers';
+import { GetIrdGeneratorLink, GetIrdV2ValidatorLink } from '../../routes/RouteLinkHelpers';
 
 
 export default function ViewAustralianTaxFileNumberValidator() {
@@ -19,6 +19,13 @@ export default function ViewAustralianTaxFileNumberValidator() {
             buttonLink="/widgets"
         >
             <div className="grid gap-y-10 md:gap-y-40  md:gap-x-20 grid-cols-12">
+                <div className="col-span-12">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
+                        <strong>Note:</strong> As of 1 April 2026, the maximum valid IRD number has increased from 150,000,000 to 200,000,000.
+                        If you need to validate IRD numbers in the new range, please use the{' '}
+                        <Link to={GetIrdV2ValidatorLink()} className="text-link font-semibold">updated IRD Number Validator (Post April 2026)</Link>.
+                    </div>
+                </div>
                 <div className="col-span-12 md:col-span-7">
                     <h2 className="text-3xl pb-4">New Zealand IRD Number Validator</h2>
                     The New Zealand Inland Revenue Department (IRD) number is an eight or nine digit identifier used to reference individuals 
