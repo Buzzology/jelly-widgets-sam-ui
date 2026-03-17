@@ -12,6 +12,8 @@ import ViewAustralianTaxFileNumberGenerator from './views/widgets/ViewAustralian
 import ViewAustralianTaxFileNumberValidator from './views/widgets/ViewAustralianTaxFileNumberValidator';
 import ViewNewZealandIRDGenerator from './views/widgets/ViewNewZealandIRDGenerator';
 import ViewNewZealandIRDValidator from './views/widgets/ViewNewZealandIRDValidator';
+import ViewNewZealandIRDV2Generator from './views/widgets/ViewNewZealandIRDV2Generator';
+import ViewNewZealandIRDV2Validator from './views/widgets/ViewNewZealandIRDV2Validator';
 import ViewAustralianMedicareNumberGenerator from './views/widgets/ViewAustralianMedicareNumberGenerator';
 import ViewAustralianMedicareNumberValidator from './views/widgets/ViewAustralianMedicareNumberValidator';
 import ViewWidgetsList from './views/widgets/ViewWidgetsList';
@@ -31,6 +33,8 @@ function App() {
               <Route path={`${EnumWidgetId.AUSTRALIAN_TAX_FILE_NUMBER_VALIDATOR}/*`} element={<ViewAustralianTaxFileNumberValidator />} />
               <Route path={`${EnumWidgetId.NEW_ZEALAND_IRD_GENERATOR}/*`} element={<ViewNewZealandIRDGenerator />} />
               <Route path={`${EnumWidgetId.NEW_ZEALAND_IRD_VALIDATOR}/*`} element={<ViewNewZealandIRDValidator />} />
+              <Route path={`${EnumWidgetId.NEW_ZEALAND_IRD_V2_GENERATOR}/*`} element={<ViewNewZealandIRDV2Generator />} />
+              <Route path={`${EnumWidgetId.NEW_ZEALAND_IRD_V2_VALIDATOR}/*`} element={<ViewNewZealandIRDV2Validator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_GENERATOR}/*`} element={<ViewAustralianBusinessNumberGenerator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_VALIDATOR}/*`} element={<ViewAustralianBusinessNumberValidator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_GENERATOR}/*`} element={<ViewAustralianMedicareNumberGenerator />} />

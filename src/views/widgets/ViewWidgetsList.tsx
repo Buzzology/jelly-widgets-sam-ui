@@ -6,10 +6,12 @@ import AustralianTaxFileNumberGenerator from '../../components/widgets/Australia
 import AustralianTaxFileNumberValidator from '../../components/widgets/AustralianTaxFileNumberValidator';
 import NewZealandIRDGenerator from '../../components/widgets/NewZealandIRDGenerator';
 import NewZealandIRDValidator from '../../components/widgets/NewZealandIRDValidator';
+import NewZealandIRDV2Generator from '../../components/widgets/NewZealandIRDV2Generator';
+import NewZealandIRDV2Validator from '../../components/widgets/NewZealandIRDV2Validator';
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
 import { useDocTitle } from '../../routes/Hooks';
-import { GetAbnGeneratorLink, GetAbnValidatorLink, GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetMedicareGeneratorLink, GetMedicareValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
+import { GetAbnGeneratorLink, GetAbnValidatorLink, GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetIrdV2GeneratorLink, GetIrdV2ValidatorLink, GetMedicareGeneratorLink, GetMedicareValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
 import AustralianMedicareNumberValidator from '../../components/widgets/AustralianMedicareNumberValidator';
 import AustralianMedicareNumberGenerator from '../../components/widgets/AustralianMedicareNumberGenerator';
 import AustralianBusinessNumberGenerator from '../../components/widgets/AustralianBusinessNumberGenerator';
@@ -117,6 +119,24 @@ export default function ViewWidgetsList() {
                         </div>
                         <div className="col-span-12 md:col-span-6">
                             <NewZealandIRDGenerator />
+                        </div>
+
+                        <div className="col-span-12 md:col-span-6">
+                            <NewZealandIRDV2Validator />
+                        </div>
+                        <div className="col-span-12 md:col-span-6">
+                            <h2 className="text-3xl pb-4">New Zealand IRD Validator (Post April 2026)</h2>
+                            Updated to support the increased upper limit of 200,000,000 effective 1 April 2026. <Link to={GetIrdV2ValidatorLink()} className="text-link">Click
+                            here to validate your IRD number.</Link>
+                        </div>
+
+                        <div className="col-span-12 md:col-span-6">
+                            <h2 className="text-3xl pb-4">New Zealand IRD Generator (Post April 2026)</h2>
+                            Updated to generate IRD numbers in the expanded range up to 200,000,000 effective 1 April 2026. <Link to={GetIrdV2GeneratorLink()} className="text-link">Click
+                            here to generate a test IRD number.</Link>
+                        </div>
+                        <div className="col-span-12 md:col-span-6">
+                            <NewZealandIRDV2Generator />
                         </div>
 
                         <div className="col-span-12 md:col-span-6">
