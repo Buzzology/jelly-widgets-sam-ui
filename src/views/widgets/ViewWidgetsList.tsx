@@ -11,11 +11,16 @@ import NewZealandIRDV2Validator from '../../components/widgets/NewZealandIRDV2Va
 import LayoutDefault from '../../layouts/LayoutDefault';
 import LayoutHeadingBlock from '../../layouts/layoutWidget/LayoutHeadingBlock';
 import { useDocTitle } from '../../routes/Hooks';
-import { GetAbnGeneratorLink, GetAbnValidatorLink, GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetIrdV2GeneratorLink, GetIrdV2ValidatorLink, GetMedicareGeneratorLink, GetMedicareValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink } from '../../routes/RouteLinkHelpers';
+import { GetAbnGeneratorLink, GetAbnValidatorLink, GetAcnGeneratorLink, GetAcnValidatorLink, GetIrdGeneratorLink, GetIrdValidatorLink, GetIrdV2GeneratorLink, GetIrdV2ValidatorLink, GetMedicareGeneratorLink, GetMedicareValidatorLink, GetTfnGeneratorLink, GetTfnValidatorLink, GetNzBankAccountValidatorLink, GetNzbnGeneratorLink, GetNzbnValidatorLink, GetAuBsbValidatorLink, GetIbanValidatorLink } from '../../routes/RouteLinkHelpers';
 import AustralianMedicareNumberValidator from '../../components/widgets/AustralianMedicareNumberValidator';
 import AustralianMedicareNumberGenerator from '../../components/widgets/AustralianMedicareNumberGenerator';
 import AustralianBusinessNumberGenerator from '../../components/widgets/AustralianBusinessNumberGenerator';
 import AustralianBusinessNumberValidator from '../../components/widgets/AustralianBusinessNumberValidator';
+import NewZealandBankAccountValidator from '../../components/widgets/NewZealandBankAccountValidator';
+import NewZealandBusinessNumberGenerator from '../../components/widgets/NewZealandBusinessNumberGenerator';
+import NewZealandBusinessNumberValidator from '../../components/widgets/NewZealandBusinessNumberValidator';
+import AustralianBsbValidator from '../../components/widgets/AustralianBsbValidator';
+import IbanValidator from '../../components/widgets/IbanValidator';
 
 
 export default function ViewWidgetsList() {
@@ -35,6 +40,54 @@ export default function ViewWidgetsList() {
             <div className="min-h-screen flex justify-center p-6">
                 <div className="max-w-md md:max-w-5xl flex-grow pt-10 pb-10">
                     <div className="grid gap-y-10 md:gap-y-40  md:gap-x-20 grid-cols-12">
+                        <div className="col-span-12 md:col-span-6">
+                            <h2 className="text-3xl pb-4">IBAN Validator</h2>
+                            Validate International Bank Account Numbers (IBANs) using the ISO 13616 MOD 97 algorithm. Supports 89+ countries
+                            including all of Europe, the Middle East, and beyond.&nbsp;
+                            <Link to={GetIbanValidatorLink()} className="text-link">Click here to validate an IBAN.</Link>
+                        </div>
+                        <div className="col-span-12 md:col-span-6">
+                            <IbanValidator />
+                        </div>
+
+                        <div className="col-span-12 md:col-span-6">
+                            <AustralianBsbValidator />
+                        </div>
+                        <div className="col-span-12 md:col-span-6">
+                            <h2 className="text-3xl pb-4">Australian BSB Validator + Lookup</h2>
+                            Validate and look up Australian BSB numbers using the AusPayNet directory. Returns institution name, branch
+                            address, and payment flags.&nbsp;
+                            <Link to={GetAuBsbValidatorLink()} className="text-link">Click here to validate a BSB.</Link>
+                        </div>
+
+                        <div className="col-span-12 md:col-span-6">
+                            <h2 className="text-3xl pb-4">New Zealand Bank Account Validator</h2>
+                            Validate New Zealand bank account numbers using the official IRD check digit algorithms. Supports all NZ banks
+                            and their specific validation algorithms.&nbsp;
+                            <Link to={GetNzBankAccountValidatorLink()} className="text-link">Click here to validate a NZ account number.</Link>
+                        </div>
+                        <div className="col-span-12 md:col-span-6">
+                            <NewZealandBankAccountValidator />
+                        </div>
+
+                        <div className="col-span-12 md:col-span-6">
+                            <NewZealandBusinessNumberValidator />
+                        </div>
+                        <div className="col-span-12 md:col-span-6">
+                            <h2 className="text-3xl pb-4">New Zealand Business Number Validator</h2>
+                            Validate NZBNs using the GS1 Mod 10 check digit algorithm. Checks format, check digit, and NZ prefix.&nbsp;
+                            <Link to={GetNzbnValidatorLink()} className="text-link">Click here to validate an NZBN.</Link>
+                        </div>
+
+                        <div className="col-span-12 md:col-span-6">
+                            <h2 className="text-3xl pb-4">New Zealand Business Number Generator</h2>
+                            Generate mathematically valid NZBNs for testing. Uses the "9429" NZ GS1 prefix with a valid Mod 10 check digit.&nbsp;
+                            <Link to={GetNzbnGeneratorLink()} className="text-link">Click here to generate an NZBN.</Link>
+                        </div>
+                        <div className="col-span-12 md:col-span-6">
+                            <NewZealandBusinessNumberGenerator />
+                        </div>
+
                         <div className="col-span-12 md:col-span-6">
                             <h2 className="text-3xl pb-4">Australian Company Number Generator</h2>
                             The Australian Company Number (ACN) is a unique nine digit identifier issued to each company. They

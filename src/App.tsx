@@ -16,6 +16,11 @@ import ViewNewZealandIRDV2Generator from './views/widgets/ViewNewZealandIRDV2Gen
 import ViewNewZealandIRDV2Validator from './views/widgets/ViewNewZealandIRDV2Validator';
 import ViewAustralianMedicareNumberGenerator from './views/widgets/ViewAustralianMedicareNumberGenerator';
 import ViewAustralianMedicareNumberValidator from './views/widgets/ViewAustralianMedicareNumberValidator';
+import ViewNewZealandBankAccountValidator from './views/widgets/ViewNewZealandBankAccountValidator';
+import ViewNewZealandBusinessNumberGenerator from './views/widgets/ViewNewZealandBusinessNumberGenerator';
+import ViewNewZealandBusinessNumberValidator from './views/widgets/ViewNewZealandBusinessNumberValidator';
+import ViewAustralianBsbValidator from './views/widgets/ViewAustralianBsbValidator';
+import ViewIbanValidator from './views/widgets/ViewIbanValidator';
 import ViewWidgetsList from './views/widgets/ViewWidgetsList';
 
 function App() {
@@ -39,6 +44,11 @@ function App() {
               <Route path={`${EnumWidgetId.AUSTRALIAN_BUSINESS_NUMBER_VALIDATOR}/*`} element={<ViewAustralianBusinessNumberValidator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_GENERATOR}/*`} element={<ViewAustralianMedicareNumberGenerator />} />
               <Route path={`${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_VALIDATOR}/*`} element={<ViewAustralianMedicareNumberValidator />} />
+              <Route path={`${EnumWidgetId.NEW_ZEALAND_BANK_ACCOUNT_VALIDATOR}/*`} element={<ViewNewZealandBankAccountValidator />} />
+              <Route path={`${EnumWidgetId.NEW_ZEALAND_BUSINESS_NUMBER_GENERATOR}/*`} element={<ViewNewZealandBusinessNumberGenerator />} />
+              <Route path={`${EnumWidgetId.NEW_ZEALAND_BUSINESS_NUMBER_VALIDATOR}/*`} element={<ViewNewZealandBusinessNumberValidator />} />
+              <Route path={`${EnumWidgetId.AUSTRALIAN_BSB_VALIDATOR}/*`} element={<ViewAustralianBsbValidator />} />
+              <Route path={`${EnumWidgetId.IBAN_VALIDATOR}/*`} element={<ViewIbanValidator />} />
               <Route path={``} element={<ViewWidgetsList />} />
             </Route>
           </Route>

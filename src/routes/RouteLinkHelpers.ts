@@ -17,3 +17,8 @@ export const GetMedicareValidatorLink = () => `/widgets/${EnumWidgetId.AUSTRALIA
 export const GetMedicareGeneratorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_MEDICARE_NUMBER_GENERATOR}/australian-medicare-number-generator`;
 export const GetIrdV2GeneratorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_IRD_V2_GENERATOR}/new-zealand-ird-number-generator-post-april-2026`;
 export const GetIrdV2ValidatorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_IRD_V2_VALIDATOR}/new-zealand-ird-number-validator-post-april-2026`;
+export const GetNzBankAccountValidatorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_BANK_ACCOUNT_VALIDATOR}/new-zealand-bank-account-validator`;
+export const GetNzbnGeneratorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_BUSINESS_NUMBER_GENERATOR}/new-zealand-business-number-generator`;
+export const GetNzbnValidatorLink = () => `/widgets/${EnumWidgetId.NEW_ZEALAND_BUSINESS_NUMBER_VALIDATOR}/new-zealand-business-number-validator`;
+export const GetAuBsbValidatorLink = () => `/widgets/${EnumWidgetId.AUSTRALIAN_BSB_VALIDATOR}/australian-bsb-validator`;
+export const GetIbanValidatorLink = () => `/widgets/${EnumWidgetId.IBAN_VALIDATOR}/iban-validator`;
